@@ -1,3 +1,4 @@
+import { Footer } from '@/components/ui-ud/ui';
 import './globals.scss';
 import { Montserrat } from 'next/font/google';
 
@@ -15,7 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={montserrat.className}>{children}</body>
+      <body className={montserrat.className}>
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
