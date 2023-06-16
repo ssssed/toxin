@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import './home.scss';
-import { LandingForm } from '@/components/landing/ui';
+import { LandingFormWrapper } from '@/components/landing/logic';
 
 export default function Home() {
   return (
     <main className='home'>
       <section className='landing'>
-        <LandingForm />
+        <LandingFormWrapper />
         <Image
           src='/landing-3.svg'
           className='landing__image'

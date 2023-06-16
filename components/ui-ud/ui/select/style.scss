@@ -1,0 +1,57 @@
+@import '/utils/variables.scss';
+
+.select {
+  display: flex;
+  position: relative;
+  align-items: center;
+  max-width: 320px;
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid $dark-shade-50;
+
+  &__img {
+    margin-left: auto;
+    cursor: pointer;
+  }
+
+  &__text {
+    color: $dark-shade-75;
+    font-size: 14px;
+    line-height: 18px;
+    text-transform: lowercase;
+  }
+
+  &__content {
+    padding: 11px 15px;
+    width: 316px;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  &__list {
+    border: 1px solid $dark-shade-50;
+    position: absolute;
+    z-index: 1;
+    left: -1px;
+    top: 100%;
+    background-color: #ffffff;
+  }
+
+  &__buttons {
+    margin-top: 13px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__button {
+    background-color: transparent;
+    border: 0;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    text-transform: uppercase;
+    color: #bc9cff;
+    cursor: pointer;
+  }
+}
