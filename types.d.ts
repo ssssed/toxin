@@ -8,4 +8,5 @@ type Subtitle = {
 
 type Label = {
     children: React.ReactNode;
+    className?: string;
 }
