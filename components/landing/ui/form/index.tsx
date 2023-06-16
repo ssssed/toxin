@@ -1,4 +1,4 @@
-import { Label, Title } from '@/components/ui-ud/ui';
+import { Label, SubmitButton, Title } from '@/components/ui-ud/ui';
 import './style.scss';
 
 const LandingForm = () => {
@@ -29,7 +29,9 @@ const LandingForm = () => {
             className='landing-form__datepicker'
           />
         </Label>
-        <button className='landing-form__button'>подобрать номер</button>
+        <SubmitButton className='landing-form__button'>
+          подобрать номер
+        </SubmitButton>
       </div>
     </form>
   );

@@ -1,0 +1,20 @@
+.submit-button {
+  display: flex;
+  align-items: center;
+  padding: 14px 18px;
+  text-transform: uppercase;
+  border: 0;
+  color: #ffffff;
+  text-align: center;
+  background: linear-gradient(180deg, #bc9cff 0%, #8ba4f9 100%);
+  border-radius: 22px;
+
+  & span {
+    width: 100%;
+    text-align: center;
+  }
+
+  & img {
+    margin-left: auto;
+  }
+}
