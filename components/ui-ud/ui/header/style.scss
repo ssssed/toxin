@@ -1,0 +1,58 @@
+@import '/utils/variables.scss';
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+  max-width: 1160px;
+  width: 100%;
+  margin: 0 auto;
+
+  &__nav {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 14px;
+    line-height: 17px;
+
+    &-list {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    &-link {
+    }
+  }
+
+  &__buttons {
+    display: flex;
+    gap: 20px;
+    margin-left: 20px;
+  }
+
+  &__button {
+    padding: 9px 20px;
+    border-radius: 22px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 12px;
+    line-height: 15px;
+    border: 0;
+    background-color: transparent;
+    overflow: hidden;
+    cursor: pointer;
+  }
+
+  &__login {
+    color: $purple;
+    border: 2px solid;
+    border-color: linear-gradient(180deg, $purple 0%, #8ba4f9 100%);
+  }
+
+  &__register {
+    color: #ffffff;
+    background: linear-gradient(180deg, $purple 0%, #8ba4f9 100%);
+  }
+}
