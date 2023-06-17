@@ -1,3 +1,4 @@
 import LandingForm from "./form";
+import Slider from "./slider";
 
-export { LandingForm }
+export { LandingForm, Slider }
