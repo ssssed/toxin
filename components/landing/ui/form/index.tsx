@@ -1,3 +1,5 @@
+'use client';
+
 import {
   DatePicker,
   Label,
@@ -6,7 +8,9 @@ import {
   Title,
 } from '@/components/ui-ud/ui';
 import './style.scss';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
+import 'animate.css';
+import WOW from 'wow.js';
 
 const LandingForm: FC<LandingForm> = ({
   onSubmit,
@@ -14,9 +18,13 @@ const LandingForm: FC<LandingForm> = ({
   changeGuest,
   onClear,
 }) => {
+  useEffect(() => {
+    const wow = new WOW();
+    wow.init();
+  }, []);
   return (
     <form
-      className='landing-form'
+      className='landing-form wow animate__animated animate__fadeInLeft'
       onSubmit={onSubmit}
     >
       <div className='landing-form__content'>

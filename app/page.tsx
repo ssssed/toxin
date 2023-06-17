@@ -1,7 +1,6 @@
-import Image from 'next/image';
 import './home.scss';
 import { LandingFormWrapper } from '@/components/landing/logic';
-import { Slider } from '@/components/landing/ui';
+import { Description, Slider } from '@/components/landing/ui';
 
 export default function Home() {
   return (
@@ -9,9 +8,7 @@ export default function Home() {
       <section className='landing'>
         <LandingFormWrapper />
         <Slider />
-        <p className='landing__text'>
-          Лучшие номера для вашей работы, отдыха и просто вдохновения
-        </p>
+        <Description />
       </section>
     </main>
   );
