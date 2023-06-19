@@ -12,6 +12,12 @@
   &__img {
     margin-left: auto;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    transform: rotate(0deg);
+
+    &_active {
+      transform: rotate(-180deg);
+    }
   }
 
   &__text {
@@ -53,5 +59,31 @@
     text-transform: uppercase;
     color: #bc9cff;
     cursor: pointer;
+  }
+
+  &__animate {
+    // CSSTransition start
+    &-enter {
+      overflow: hidden;
+      max-height: 0;
+    }
+
+    // CSSTransition active animate
+    &-enter-active {
+      max-height: 1000px;
+      transition: max-height 0.6s ease-in-out;
+    }
+
+    // CSSTransition start to exit animate
+    &-exit {
+      max-height: 1000px;
+    }
+
+    // CSSTransition exit animate
+    &-exit-active {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+    }
   }
 }

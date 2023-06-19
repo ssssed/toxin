@@ -5,6 +5,7 @@ import './style.scss';
 import { FC, useMemo, useState } from 'react';
 import SelectItem from './select-item';
 import Label from '../label';
+import { CSSTransition } from 'react-transition-group';
 
 const Select: FC<Select> = ({ guest, changeGuest, onClear }) => {
   const [isShow, setShow] = useState<boolean>();
@@ -26,13 +27,18 @@ const Select: FC<Select> = ({ guest, changeGuest, onClear }) => {
       <p className='select__text'>{countPeople} гостя</p>
       <Image
         src='/accordion.svg'
-        className='select__img'
+        className={`select__img ${isShow && 'select__img_active'}`}
         alt='accordion'
         onClick={handleToggleList}
         width={12}
         height={12}
       />
-      {isShow && (
+      <CSSTransition
+        in={isShow}
+        classNames='select__animate'
+        timeout={200}
+        unmountOnExit
+      >
         <div className='select__list'>
           <div className='select__content'>
             <SelectItem
@@ -72,7 +78,7 @@ const Select: FC<Select> = ({ guest, changeGuest, onClear }) => {
             </div>
           </div>
         </div>
-      )}
+      </CSSTransition>
     </div>
   );
 };
