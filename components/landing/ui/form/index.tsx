@@ -9,9 +9,8 @@ import {
   Option,
 } from '@/components/ui-ud/ui';
 import './style.scss';
-import { FC, useEffect, useMemo, useState } from 'react';
+import { FC, useMemo, useState } from 'react';
 import 'animate.css';
-import WOW from 'wow.js';
 
 const LandingForm: FC<LandingForm> = ({
   onSubmit,
@@ -28,12 +27,6 @@ const LandingForm: FC<LandingForm> = ({
     () => guest.adult + guest.baby + guest.children,
     [guest]
   );
-
-  // Animate
-  useEffect(() => {
-    const wow = new WOW();
-    wow.init();
-  }, []);
   return (
     <form
       className='landing-form wow animate__animated animate__fadeInLeft'
