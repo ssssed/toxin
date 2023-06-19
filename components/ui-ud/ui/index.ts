@@ -7,5 +7,6 @@ import SubmitButton from "./submit-button";
 import DatePicker from "./datepicker";
 import Select from "./select";
 import Option from "./select/option";
+import Slider from "./slider";
 
-export { Footer, Title, Subtitle, Label, Header, SubmitButton, DatePicker, Select, Option }
+export { Footer, Title, Subtitle, Label, Header, SubmitButton, DatePicker, Select, Option, Slider }

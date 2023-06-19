@@ -1,7 +1,11 @@
 'use client';
 
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { LandingForm } from '@/components/landing/ui';
+
+const LandingForm = dynamic(() => import('@/components/landing/ui/form'), {
+  ssr: false,
+});
 
 const LandingFormWrapper = () => {
   const [guest, setGuest] = useState<Guest>({

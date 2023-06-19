@@ -57,3 +57,7 @@ type Select = {
     value: string | number;
     onAccept?: () => void;
 }
+
+type Slider = {
+    images: string[];
+}
