@@ -1,0 +1,21 @@
+@import '/utils/variables.scss';
+
+.button {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 15px;
+  text-transform: uppercase;
+  padding: 9px 20px;
+  color: $purple;
+  border-radius: 22px;
+  border: 2px solid;
+  overflow: hidden;
+  background-color: transparent;
+  border-color: linear-gradient(180deg, $purple 0%, #8ba4f9 100%);
+  cursor: pointer;
+
+  &_painted {
+    color: #ffffff;
+    background: linear-gradient(180deg, $purple 0%, #8ba4f9 100%);
+  }
+}

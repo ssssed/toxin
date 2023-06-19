@@ -61,3 +61,31 @@ type Select = {
 type Slider = {
     images: string[];
 }
+
+type InputGroup = {
+    children: React.ReactNode;
+}
+
+type Input = {
+    value: string | number;
+    type?: "email" | "text" | "password" | "tel";
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    placeholder?: string;
+    required?: boolean
+}
+
+type Form = {
+    children: React.ReactNode;
+    onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
+}
+
+type FormInfoBar = {
+    children: React.ReactNode;
+}
+
+type Button = {
+    className?: string;
+    children: React.ReactNode;
+    type: "default" | "painted";
+    onClick?: () => void;
+}

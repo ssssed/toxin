@@ -8,5 +8,15 @@ import DatePicker from "./datepicker";
 import Select from "./select";
 import Option from "./select/option";
 import Slider from "./slider";
+import Input from "./input";
+import Form from "./form";
+import InputGroup from "./input-group";
+import FormInfoBar from "./form/form-info-bar";
+import Button from "./button";
 
-export { Footer, Title, Subtitle, Label, Header, SubmitButton, DatePicker, Select, Option, Slider }
+export {
+    Footer, Title, Subtitle, Label,
+    Header, SubmitButton, DatePicker,
+    Select, Option, Slider, Input,
+    Form, InputGroup, FormInfoBar, Button
+}
