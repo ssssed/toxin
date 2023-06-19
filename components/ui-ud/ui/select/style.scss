@@ -7,7 +7,12 @@
   max-width: 320px;
   width: 100%;
   padding: 12px 15px;
-  border: 1px solid $dark-shade-50;
+  border: 1px solid $dark-shade-25;
+  border-radius: 4px;
+
+  &_open {
+    border-radius: 4px 4px 0 0;
+  }
 
   &__img {
     margin-left: auto;
@@ -22,9 +27,10 @@
 
   &__text {
     color: $dark-shade-75;
+    font-weight: 400;
     font-size: 14px;
     line-height: 18px;
-    text-transform: lowercase;
+    text-transform: none;
   }
 
   &__content {
@@ -36,7 +42,8 @@
   }
 
   &__list {
-    border: 1px solid $dark-shade-50;
+    border: 1px solid $dark-shade-25;
+    border-radius: 0 0 4px 4px;
     position: absolute;
     z-index: 1;
     left: -1px;
