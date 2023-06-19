@@ -21,7 +21,7 @@ type DatePicker = {
     className?: string;
 }
 
-type SelectItem = {
+type Option = {
     children: React.ReactNode;
     value: string | number;
     increment: () => void;
@@ -51,7 +51,9 @@ type Guest = {
 }
 
 type Select = {
-    guest: Guest;
-    onClear: () => void;
-    changeGuest: GuestDataChanging;
+    isShow: boolean;
+    setShow: React.Dispatch<SetStateAction<boolean>>;
+    children: React.ReactNode;
+    value: string | number;
+    onAccept?: () => void;
 }

@@ -2,12 +2,7 @@ import { FC } from 'react';
 import './style.scss';
 import { Label } from '@/components/ui-ud/ui';
 
-const SelectItem: FC<SelectItem> = ({
-  children,
-  value,
-  increment,
-  decrement,
-}) => {
+const Option: FC<Option> = ({ children, value, increment, decrement }) => {
   return (
     <div className='select-item'>
       <p className='select-item__text'>{children}</p>
@@ -30,4 +25,4 @@ const SelectItem: FC<SelectItem> = ({
   );
 };
 
-export default SelectItem;
+export default Option;

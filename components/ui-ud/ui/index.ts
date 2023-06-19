@@ -6,5 +6,6 @@ import Header from "./header";
 import SubmitButton from "./submit-button";
 import DatePicker from "./datepicker";
 import Select from "./select";
+import Option from "./select/option";
 
-export { Footer, Title, Subtitle, Label, Header, SubmitButton, DatePicker, Select }
+export { Footer, Title, Subtitle, Label, Header, SubmitButton, DatePicker, Select, Option }
