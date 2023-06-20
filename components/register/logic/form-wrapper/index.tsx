@@ -53,7 +53,7 @@ const FormWrapper = () => {
 
   return (
     <Form
-      className='wow animate__animated animate__fadeInDownBig'
+      className='wow animate__animated animate__fadeInDownBig form-register'
       onSubmit={handleSubmitForm}
     >
       <Title>Регистрация аккаунта</Title>

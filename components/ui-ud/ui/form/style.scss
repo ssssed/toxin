@@ -5,6 +5,10 @@
   right: 0;
   z-index: 2;
 
+  &-register {
+    top: 100px !important;
+  }
+
   &__content {
     border: 1px solid rgba(0, 0, 0, 0.12);
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.2);
