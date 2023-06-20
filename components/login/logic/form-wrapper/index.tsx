@@ -33,7 +33,10 @@ const FormWrapper = () => {
   const handleNavigateToRegisterPage = () => router.push('/register');
 
   return (
-    <Form onSubmit={handleSubmitForm}>
+    <Form
+      className='wow animate__animated animate__fadeInDownBig'
+      onSubmit={handleSubmitForm}
+    >
       <Title>Войти</Title>
       <InputGroup>
         <Input

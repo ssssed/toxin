@@ -1,12 +1,12 @@
 'use client';
 
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import './style.scss';
 
-const Form: FC<Form> = ({ children, onSubmit }) => {
+const Form: FC<Form> = ({ children, onSubmit, className = '' }) => {
   return (
     <form
-      className='form'
+      className={`form ${className}`}
       onSubmit={onSubmit}
     >
       <div className='form__content'>{children}</div>

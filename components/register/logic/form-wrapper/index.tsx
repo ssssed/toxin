@@ -51,7 +51,10 @@ const FormWrapper = () => {
   const handleNavigateToLoginPage = () => navigate.push('/login');
 
   return (
-    <Form onSubmit={handleSubmitForm}>
+    <Form
+      className='wow animate__animated animate__fadeInDownBig'
+      onSubmit={handleSubmitForm}
+    >
       <Title>Регистрация аккаунта</Title>
       <InputGroup>
         <Input
