@@ -11,6 +11,7 @@ const Button: FC<Button> = ({
 }) => {
   return (
     <button
+      type='button'
       className={`button ${
         type === 'painted' && 'button_painted'
       } ${className}`}

@@ -1,5 +1,3 @@
-import FormWrapper from "./form-wrapper";
+import FormWrapper from './form-wrapper';
 
-export {
-    FormWrapper
-}
+export { FormWrapper }

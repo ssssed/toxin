@@ -68,7 +68,7 @@ type InputGroup = {
 
 type Input = {
     value: string | number;
-    type?: "email" | "text" | "password" | "tel";
+    type?: "email" | "text" | "password" | "tel" | "date";
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
     required?: boolean
@@ -88,4 +88,13 @@ type Button = {
     children: React.ReactNode;
     type: "default" | "painted";
     onClick?: () => void;
+}
+
+type RadioGroup = {
+    children: React.ReactNode;
+}
+
+type Radio = {
+    children: React.ReactNode;
+    name: string;
 }
