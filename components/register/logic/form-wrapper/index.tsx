@@ -17,13 +17,7 @@ import {
 import Radio from '@/components/ui-ud/ui/radio';
 import RadioGroup from '@/components/ui-ud/ui/radio-group';
 import { useRouter } from 'next/navigation';
-import { DetailedHTMLProps, HTMLAttributes, useState } from 'react';
-
-const CONTAINER_STYLE = {
-  display: 'flex',
-  flexDirection: 'column',
-  gap: '5px',
-} as DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
+import { useState } from 'react';
 
 const FormWrapper = () => {
   const navigate = useRouter();
