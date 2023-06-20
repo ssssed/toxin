@@ -2,6 +2,7 @@
 
 import {
   Button,
+  Container,
   DatePicker,
   Form,
   FormInfoBar,
@@ -9,6 +10,8 @@ import {
   InputGroup,
   Label,
   SubmitButton,
+  Switch,
+  Text,
   Title,
 } from '@/components/ui-ud/ui';
 import Radio from '@/components/ui-ud/ui/radio';
@@ -30,6 +33,10 @@ const FormWrapper = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [date, setDate] = useState<string>('');
+
+  const [isOn, setIsOn] = useState(false);
+
+  const handleToggleSwitch = () => setIsOn(!isOn);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
@@ -74,12 +81,18 @@ const FormWrapper = () => {
         <Radio name='sex'>Мужчина</Radio>
         <Radio name='sex'>Женщина</Radio>
       </RadioGroup>
-      <div style={CONTAINER_STYLE}>
+      <Container
+        gap='5px'
+        direction='column'
+      >
         <Label>Дата рождения</Label>
         {/* Временно */}
         <DatePicker />
-      </div>
-      <div style={CONTAINER_STYLE}>
+      </Container>
+      <Container
+        gap='5px'
+        direction='column'
+      >
         <Label>данные для входа в сервис</Label>
         <InputGroup>
           <Input
@@ -97,7 +110,19 @@ const FormWrapper = () => {
             required
           />
         </InputGroup>
-      </div>
+        <Container
+          direction='row'
+          gap='10px'
+          items='center'
+          padding='5px 0 0'
+        >
+          <Switch
+            value={isOn}
+            onToggle={handleToggleSwitch}
+          />
+          <Text>Получать спецпредложения</Text>
+        </Container>
+      </Container>
       <SubmitButton>зарегистрироваться</SubmitButton>
       <FormInfoBar>
         <span>Уже есть аккаунт на Toxin</span>

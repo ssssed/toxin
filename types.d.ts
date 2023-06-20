@@ -99,3 +99,22 @@ type Radio = {
     children: React.ReactNode;
     name: string;
 }
+
+type Switch = {
+    value: boolean;
+    onToggle: () => void;
+}
+
+type Container = {
+    children: React.ReactNode;
+    direction?: "row" | "column";
+    gap?: roperty.Gap<string | number>;
+    maxWidth?: Property.MaxWidth<string | number>;
+    center?: boolean;
+    padding?: Property.Padding<string | number>;
+    items?: Property.AlignItems;
+}
+
+type TextUI = {
+    children: React.ReactNode;
+}

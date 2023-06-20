@@ -13,10 +13,14 @@ import Form from "./form";
 import InputGroup from "./input-group";
 import FormInfoBar from "./form/form-info-bar";
 import Button from "./button";
+import Switch from "./switch";
+import Container from "./container";
+import Text from "./text";
 
 export {
     Footer, Title, Subtitle, Label,
     Header, SubmitButton, DatePicker,
     Select, Option, Slider, Input,
-    Form, InputGroup, FormInfoBar, Button
+    Form, InputGroup, FormInfoBar, Button,
+    Switch, Container, Text
 }
