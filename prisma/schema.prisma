@@ -1,0 +1,82 @@
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+enum Gender {
+    MALE
+    FEMALE
+    NONE
+}
+
+model User {
+    id                       Int       @id @default(autoincrement())
+    name                     String?
+    lastname                 String?
+    sex                      Gender    @default(NONE)
+    date_birthday            DateTime?
+    is_accept_special_demand Boolean
+    email                    String    @unique
+    password                 String
+    createdAt                DateTime  @default(now())
+    updatedAt                DateTime  @updatedAt
+
+    bookings Booking[] // показываем связь
+    comments Comment[]
+    likes    Like[]
+}
+
+model Booking {
+    id       Int      @id @default(autoincrement())
+    checkIn  DateTime
+    checkOut DateTime
+    created  DateTime @default(now())
+    updated  DateTime @updatedAt
+
+    Room   Room? @relation(fields: [roomId], references: [id])
+    roomId Int?
+    User   User? @relation(fields: [userId], references: [id])
+    userId Int?
+
+    comments Comment[]
+}
+
+model Room {
+    id                        Int      @id @default(autoincrement())
+    number                    Int      @unique
+    day_price                 Int
+    services_price            Int
+    additional_services_price Int
+    is_deleted                Boolean  @default(false)
+    created                   DateTime @default(now())
+    updated                   DateTime @updatedAt
+
+    bookings Booking[]
+}
+
+model Comment {
+    id      Int      @id @default(autoincrement())
+    image   String?
+    created DateTime @default(now())
+
+    user      User     @relation(fields: [userId], references: [id])
+    userId    Int
+    Booking   Booking? @relation(fields: [bookingId], references: [id])
+    bookingId Int?
+    likes     Like[]
+}
+
+model Like {
+    id      Int      @id @default(autoincrement())
+    created DateTime @default(now())
+    updated DateTime @updatedAt
+
+    user      User    @relation(fields: [userId], references: [id])
+    userId    Int
+    comment   Comment @relation(fields: [commentId], references: [id])
+    commentId Int
+}
