@@ -9,6 +9,7 @@ import {
   SubmitButton,
   Title,
 } from '@/components/ui-ud/ui';
+import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useState, memo } from 'react';
 
@@ -25,7 +26,16 @@ const FormWrapper = () => {
 
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, password);
+    const response = await signIn('credentials', {
+      email,
+      password,
+      redirect: false,
+    });
+    console.log(response);
+    if (response?.ok) {
+      router.push('/');
+    }
+
     setEmail('');
     setPassword('');
   };

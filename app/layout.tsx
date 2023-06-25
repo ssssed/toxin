@@ -1,6 +1,7 @@
 import { Footer, Header } from '@/components/ui-ud/ui';
 import './globals.scss';
 import { Montserrat } from 'next/font/google';
+import { Providers } from '@/hoc';
 
 const montserrat = Montserrat({ subsets: ['latin'] });
 
@@ -21,9 +22,11 @@ export default function RootLayout({
         <script>const wow = new WOW(); wow.init();</script>
       </head>
       <body className={montserrat.className}>
-        <Header />
-        {children}
-        <Footer />
+        <Providers>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

@@ -20,13 +20,14 @@ import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
 const FormWrapper = () => {
-  const navigate = useRouter();
+  const router = useRouter();
 
   const [name, setName] = useState<string>('');
   const [lastName, setLastName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [date, setDate] = useState<string>('');
+  const [sex, setSex] = useState<string>('NONE');
 
   const [isOn, setIsOn] = useState(false);
 
@@ -44,12 +45,36 @@ const FormWrapper = () => {
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setDate(e.target.value);
+  const handleSexChange = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setSex(e.target.value);
 
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    try {
+      console.log(sex);
+
+      const response = await fetch(`api/user`, {
+        method: 'POST',
+        body: JSON.stringify({
+          name,
+          lastname: lastName,
+          email,
+          password,
+          date_birthday: null,
+          is_accept_special_demand: isOn,
+          sex,
+        }),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log(data);
+        handleNavigateToLoginPage();
+      }
+    } catch (error) {}
   };
 
-  const handleNavigateToLoginPage = () => navigate.push('/login');
+  const handleNavigateToLoginPage = () => router.push('/login');
 
   return (
     <Form
@@ -72,8 +97,22 @@ const FormWrapper = () => {
         />
       </InputGroup>
       <RadioGroup>
-        <Radio name='sex'>Мужчина</Radio>
-        <Radio name='sex'>Женщина</Radio>
+        <Radio
+          name='sex'
+          checked={sex === 'MALE'}
+          value='MALE'
+          onChange={handleSexChange}
+        >
+          Мужчина
+        </Radio>
+        <Radio
+          name='sex'
+          checked={sex === 'FEMALE'}
+          value='FEMALE'
+          onChange={handleSexChange}
+        >
+          Женщина
+        </Radio>
       </RadioGroup>
       <Container
         gap='5px'

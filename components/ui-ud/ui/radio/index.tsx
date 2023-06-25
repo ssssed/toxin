@@ -1,13 +1,16 @@
 import { FC } from 'react';
 import './style.scss';
 
-const Radio: FC<Radio> = ({ children, name }) => {
+const Radio: FC<Radio> = ({ children, name, value, checked, onChange }) => {
   return (
     <label className='btn-radio'>
       <input
         type='radio'
         id='rdo-1'
         name={name}
+        checked={checked}
+        value={value}
+        onChange={onChange}
       />
       <svg
         width='20px'

@@ -1,5 +1,7 @@
+import { authConfig } from "./auth";
 import prisma from "./prisma";
 
+
 export {
-    prisma
+    prisma, authConfig
 }
