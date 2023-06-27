@@ -1,26 +1,19 @@
 'use client';
 
-import {
-  Button,
-  Form,
-  FormInfoBar,
-  Input,
-  InputGroup,
-  SubmitButton,
-  Title,
-} from '@/components/ui-ud/ui';
-import { signIn } from 'next-auth/react';
-import { useRouter } from 'next/navigation';
-import { useState, memo } from 'react';
+import {Button, Form, FormInfoBar, Input, InputGroup, SubmitButton, Title,} from '@/components/ui-ud/ui';
+import {signIn} from 'next-auth/react';
+import {useRouter} from 'next/navigation';
+import {memo, useState} from 'react';
 
 const FormWrapper = () => {
   const router = useRouter();
 
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [error, setError] = useState<string>("");
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setEmail(e.target.value);
+      setEmail(e.target.value);
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setPassword(e.target.value);
 
@@ -32,7 +25,9 @@ const FormWrapper = () => {
       redirect: false,
     });
     console.log(response);
-    if (response?.ok) {
+    if (response?.error) {
+      setError(response.error);
+    } else {
       router.push('/');
     }
 
@@ -65,11 +60,12 @@ const FormWrapper = () => {
         />
       </InputGroup>
       <SubmitButton>войти</SubmitButton>
+      <span style={{color: "red"}}>{error}</span>
       <FormInfoBar>
         <span>Нет аккаунта на Toxin?</span>
         <Button
-          type='default'
-          onClick={handleNavigateToRegisterPage}
+            type='default'
+            onClick={handleNavigateToRegisterPage}
         >
           создать
         </Button>

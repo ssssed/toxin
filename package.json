@@ -4,10 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "postinstall": "prisma generate",
+    "build": "npm run postinstall && next build",
     "start": "next start",
     "lint": "next lint",
     "migrate": "prisma migrate dev"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
   },
   "dependencies": {
     "@prisma/client": "^4.16.0",

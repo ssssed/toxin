@@ -1,6 +1,7 @@
 import type { AuthOptions, Awaitable, User as NextUser } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "@/configs";
+import {User} from "@prisma/client";
 
 export const authConfig: AuthOptions = {
     session: {
@@ -8,6 +9,8 @@ export const authConfig: AuthOptions = {
     },
     providers: [
         Credentials({
+            id: "credentials",
+            name: "Credentials",
             credentials: {
                 email: {
                     label: "email",
@@ -43,17 +46,25 @@ export const authConfig: AuthOptions = {
                         email: credentials.email
                     }
                 })
-                if (user?.password === credentials.password) {
-                    const { password, ...userWithOutPassword } = user;
-                    return userWithOutPassword as NextUser;
+
+                if(!user) {
+                    throw new Error("User not found");
                 }
 
-                return null;
+                const isPasswordCorrect = user?.password === credentials.password
+
+                if (!isPasswordCorrect) {
+                    throw new Error("Invalid credentials")
+                }
+
+                const { password, ...userWithOutPassword } = user;
+                return userWithOutPassword;
+
             },
         }),
     ],
     callbacks: {
-        async session({ session }) {
+        async session({ session, token }) {
             const userInfo = await prisma.user.findFirst({
                 where: {
                     email: session.user.email
