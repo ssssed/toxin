@@ -5,7 +5,7 @@ const LOGIN_IMAGES = ['landing-2', 'landing-3'];
 
 const Login = () => {
   return (
-    <main className='login'>
+    <main className='page login'>
       <Slider images={LOGIN_IMAGES} />
       <FormWrapper />
     </main>

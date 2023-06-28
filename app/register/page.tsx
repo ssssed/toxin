@@ -5,7 +5,7 @@ const REGISTER_IMAGES = ['landing-2', 'landing-3'];
 
 const Register = () => {
   return (
-    <main>
+    <main className="page register">
       <Slider images={REGISTER_IMAGES} />
       <FormWrapper />
     </main>

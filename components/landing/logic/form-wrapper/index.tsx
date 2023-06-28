@@ -62,7 +62,7 @@ const LandingFormWrapper = () => {
       }}
       onSubmit={e => {
         e.preventDefault();
-        router.push("/rooms")
+        router.push("/hotels")
       }}
     />
   );

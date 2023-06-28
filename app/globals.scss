@@ -31,3 +31,7 @@ input[type='number']:focus {
   appearance: none;
   -moz-appearance: textfield;
 }
+
+.page {
+  flex: 1 0 auto;
+}

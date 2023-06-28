@@ -7,7 +7,7 @@ const SLIDER_IMAGES = ['landing-1', 'landing-6', 'landing-3', 'landing-7'];
 
 export default function Home() {
   return (
-    <main className='home'>
+    <main className='page home'>
       <section className='landing'>
         <LandingFormWrapper />
         <Slider images={SLIDER_IMAGES} />
