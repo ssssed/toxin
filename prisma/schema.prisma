@@ -15,6 +15,13 @@ enum Gender {
     NONE
 }
 
+// enum RoomType {
+//     LUXE
+//     DEFAULT
+//     PREMIUM
+//     PRESIDENT
+// }
+
 model User {
     id                       Int       @id @default(autoincrement())
     name                     String?
@@ -50,6 +57,7 @@ model Booking {
 model Room {
     id                        Int      @id @default(autoincrement())
     number                    Int      @unique
+    // type                      RoomType @default(DEFAULT)
     day_price                 Int
     services_price            Int
     additional_services_price Int
