@@ -2,15 +2,14 @@
 
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import {useRouter} from "next/navigation";
+import { useRouter } from 'next/navigation';
 
 const LandingForm = dynamic(() => import('@/components/landing/ui/form'), {
   ssr: false,
 });
 
 const LandingFormWrapper = () => {
-
-    const router = useRouter()
+  const router = useRouter();
 
   const [guest, setGuest] = useState<Guest>({
     adult: 0,
@@ -62,7 +61,7 @@ const LandingFormWrapper = () => {
       }}
       onSubmit={e => {
         e.preventDefault();
-        router.push("/hotels")
+        router.push('/rooms');
       }}
     />
   );
