@@ -1,13 +1,7 @@
 import './style.scss';
 import { Room } from '@prisma/client';
 import { Container, Title } from '@/components/ui-ud/ui';
-
-enum RoomType {
-  LUXE = 'Люкс',
-  DEFAULT = '',
-  PREMIUM = 'Премиум',
-  PRESIDENT = 'Президентский',
-}
+import Card from '../card';
 
 const ROOMS: Room[] = [
   {
@@ -77,12 +71,7 @@ const Rooms = () => {
       <Title>Номера, которые мы для вас подобрали</Title>
       <div className='rooms'>
         {ROOMS.map(room => (
-          <div key={room.id}>
-            <h2>
-              № {room.number} {RoomType[room.type]}
-            </h2>
-            <span>{room.day_price}₽ в сутки</span>
-          </div>
+          <Card key={room.id} {...room} />
         ))}
       </div>
     </Container>

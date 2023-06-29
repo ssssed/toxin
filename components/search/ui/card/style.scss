@@ -1,0 +1,50 @@
+@import '/utils/variables.scss';
+
+.room {
+  display: flex;
+  flex-direction: column;
+  max-width: 270px;
+  width: 100%;
+  box-shadow: $dark-shadow-1 0px 7px 29px 0px;
+  border-radius: 4px;
+
+  &__content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background-color: #ffffff;
+  }
+
+  &__info-bar {
+    display: flex;
+    align-items: flex-end;
+    padding-bottom: 12px;
+    border-bottom: 1px solid $dark-shade-10;
+  }
+
+  &__price,
+  &__count-review {
+    font-size: 12px;
+    margin-left: auto;
+  }
+
+  &__type {
+    color: $purple;
+    text-transform: uppercase;
+    padding-left: 8px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+
+  &__important-text {
+    font-weight: bold;
+    color: $dark-shade-50;
+    font-size: 14px;
+  }
+
+  &__review {
+    display: flex;
+    align-items: center;
+  }
+}
