@@ -16,11 +16,12 @@ import Button from "./button";
 import Switch from "./switch";
 import Container from "./container";
 import Text from "./text";
+import Star from "./star";
 
 export {
     Footer, Title, Subtitle, Label,
     Header, SubmitButton, DatePicker,
     Select, Option, Slider, Input,
     Form, InputGroup, FormInfoBar, Button,
-    Switch, Container, Text
+    Switch, Container, Text, Star
 }

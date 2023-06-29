@@ -121,3 +121,7 @@ type Container = {
 type TextUI = {
     children: React.ReactNode;
 }
+
+type Start = {
+    rating: number;
+}
