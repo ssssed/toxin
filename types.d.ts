@@ -125,3 +125,23 @@ type TextUI = {
 type Start = {
     rating: number;
 }
+
+type Pagination = {
+    elementPerPage: number,
+    totalElement: number,
+    currentPage: number,
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+    buttonClass?: string;
+    buttonActiveClass?: string;
+    navigationButtonClass?: string;
+    navigationPrevContent?: React.ReactNode | string;
+    navigationNextContent?: React.ReactNode | string;
+    paginationClass?: string;
+}
+
+type Rooms = {
+    currentPage: number;
+    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+    rooms: Room[];
+    elementPerPage: number;
+}

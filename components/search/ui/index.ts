@@ -1,7 +1,7 @@
-import Hotels from "./hotels";
+import Rooms from "./rooms";
 import Card from "./card";
 
 export {
-    Hotels,
+    Rooms,
     Card
 }
