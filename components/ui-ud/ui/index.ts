@@ -17,11 +17,13 @@ import Switch from "./switch";
 import Container from "./container";
 import Text from "./text";
 import Star from "./star";
+import Checkbox from "./chekbox";
 
 export {
     Footer, Title, Subtitle, Label,
     Header, SubmitButton, DatePicker,
     Select, Option, Slider, Input,
     Form, InputGroup, FormInfoBar, Button,
-    Switch, Container, Text, Star
+    Switch, Container, Text, Star,
+    Checkbox
 }

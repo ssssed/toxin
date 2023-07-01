@@ -146,3 +146,10 @@ type Rooms = {
     elementPerPage: number;
     totalPage: number;
 }
+
+type Checkbox = {
+    name: string;
+    children?: string;
+    checked?: boolean;
+    onChange?: () => void;
+}

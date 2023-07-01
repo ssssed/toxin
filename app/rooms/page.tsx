@@ -3,7 +3,7 @@
 import { useSession } from 'next-auth/react';
 import { Container } from '@/components/ui-ud/ui';
 import './style.scss';
-import { RoomsWrapper } from '@/components/search/logic';
+import { LeftBarWrapper, RoomsWrapper } from '@/components/search/logic';
 
 export default function Rooms() {
   // const { data: session } = useSession();
@@ -16,7 +16,7 @@ export default function Rooms() {
         maxWidth={1160}
         center
       >
-        <Container maxWidth={266}>Left Bar</Container>
+        <LeftBarWrapper />
         <RoomsWrapper />
       </Container>
     </main>
