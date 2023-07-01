@@ -53,6 +53,7 @@ const Rooms: FC<Rooms> = ({
           />
         }
       />
+      <p className='rooms__text'>1 – 12 из 100+ вариантов аренды</p>
     </Container>
   );
 };

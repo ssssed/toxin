@@ -30,7 +30,6 @@ const Pagination: FC<Pagination> = ({
     useState<PaginationRenderButton>([]);
 
   const handleNext = () => {
-    console.log('click');
     setCurrentButton(prev => (prev >= numberOfPages.length ? prev : prev + 1));
     setCurrentPage(currentPage + 1);
   };
