@@ -10,6 +10,7 @@ const Rooms: FC<Rooms> = ({
   setCurrentPage,
   rooms,
   elementPerPage,
+  totalPage,
 }) => {
   return (
     <Container
@@ -30,7 +31,7 @@ const Rooms: FC<Rooms> = ({
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         elementPerPage={elementPerPage}
-        totalElement={rooms.length}
+        totalPage={totalPage}
         buttonClass='pagination__button'
         buttonActiveClass='pagination__button_active'
         navigationButtonClass='pagination__navigation'

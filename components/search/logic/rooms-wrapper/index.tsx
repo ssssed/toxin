@@ -152,6 +152,8 @@ const ROOMS: Room[] = [
 ];
 
 const ELEMENT_PER_SLIDE = 12;
+const TOTAL_PAGE = Math.ceil(ROOMS.length / ELEMENT_PER_SLIDE);
+console.log(TOTAL_PAGE);
 
 const RoomsWrapper = () => {
   const router = useRouter();
@@ -176,6 +178,7 @@ const RoomsWrapper = () => {
       setCurrentPage={setCurrentPage}
       rooms={rooms}
       elementPerPage={ELEMENT_PER_SLIDE}
+      totalPage={TOTAL_PAGE}
     />
   );
 };

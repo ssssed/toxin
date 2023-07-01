@@ -8,7 +8,7 @@ type PaginationRenderButton = Array<number | string>;
 
 const Pagination: FC<Pagination> = ({
   elementPerPage,
-  totalElement,
+  totalPage,
   currentPage,
   setCurrentPage,
   buttonClass = '',
@@ -18,11 +18,10 @@ const Pagination: FC<Pagination> = ({
   navigationPrevContent = 'Назад',
   paginationClass = '',
 }) => {
-  let pages = Math.ceil(totalElement / elementPerPage);
   const isDesktopResolution = useMatchMedia('(min-width:1023px)', true);
 
   const numberOfPages: PaginationRenderButton = [];
-  for (let i = 1; i <= pages; i++) {
+  for (let i = 1; i <= totalPage; i++) {
     numberOfPages.push(i);
   }
 
@@ -103,7 +102,7 @@ const Pagination: FC<Pagination> = ({
           </button>
         );
       })}
-      {currentPage !== totalElement && (
+      {currentPage !== totalPage && (
         <button
           className={navigationButtonClass}
           onClick={handleNext}
