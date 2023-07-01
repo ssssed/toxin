@@ -1,6 +1,6 @@
 'use client';
 
-import { Star, Subtitle } from '@/components/ui-ud/ui';
+import { Subtitle } from '@/components/ui-ud/ui';
 import { Room } from '@prisma/client';
 import Image from 'next/image';
 import { FC } from 'react';
@@ -10,6 +10,7 @@ import { Pagination, EffectFade } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/scss/pagination';
+import dynamic from 'next/dynamic';
 
 enum RoomType {
   LUXE = 'Люкс',
@@ -19,6 +20,9 @@ enum RoomType {
 }
 
 const IMAGES: string[] = ['/room-img.png', '/room-img2.png', '/room-img3.png'];
+const Star = dynamic(() => import('@/components/ui-ud/ui/star'), {
+  ssr: false,
+});
 
 const Card: FC<Room> = room => {
   const rating = Math.floor(Math.random() * 5);
