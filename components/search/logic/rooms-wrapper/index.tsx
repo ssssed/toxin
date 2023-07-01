@@ -1,7 +1,7 @@
 'use client';
 
 import { Rooms } from '@/components/search/ui';
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { Room } from '@prisma/client';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
@@ -153,29 +153,32 @@ const ROOMS: Room[] = [
 
 const ELEMENT_PER_SLIDE = 12;
 const TOTAL_PAGE = Math.ceil(ROOMS.length / ELEMENT_PER_SLIDE);
-console.log(TOTAL_PAGE);
 
 const RoomsWrapper = () => {
   const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
   const [currentPage, setCurrentPage] = useState<number>(
-    Number(params.get('page')) | 1
+    Number(params.get('page')) || 1
   );
 
   const [rooms, setRooms] = useState(ROOMS);
 
   useEffect(() => {
-    router.push(`${pathname}?page=${currentPage}`);
     const startIndex = (currentPage - 1) * ELEMENT_PER_SLIDE;
     const endIndex = startIndex + ELEMENT_PER_SLIDE;
     setRooms(ROOMS.slice(startIndex, endIndex));
   }, [currentPage]);
 
+  const handleCurrentPageChange = (page: number) => {
+    router.replace(`${pathname}?page=${page}`);
+    setCurrentPage(page);
+  };
+
   return (
     <Rooms
       currentPage={currentPage}
-      setCurrentPage={setCurrentPage}
+      setCurrentPage={handleCurrentPageChange}
       rooms={rooms}
       elementPerPage={ELEMENT_PER_SLIDE}
       totalPage={TOTAL_PAGE}
@@ -183,4 +186,4 @@ const RoomsWrapper = () => {
   );
 };
 
-export default RoomsWrapper;
+export default memo(RoomsWrapper);

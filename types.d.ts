@@ -130,7 +130,7 @@ type Pagination = {
     elementPerPage: number,
     totalPage: number,
     currentPage: number,
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>
+    setCurrentPage: (page: number) => void;
     buttonClass?: string;
     buttonActiveClass?: string;
     navigationButtonClass?: string;
@@ -141,7 +141,7 @@ type Pagination = {
 
 type Rooms = {
     currentPage: number;
-    setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
+    setCurrentPage: (page: number) => void;
     rooms: Room[];
     elementPerPage: number;
     totalPage: number;

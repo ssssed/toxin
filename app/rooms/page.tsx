@@ -6,8 +6,8 @@ import './style.scss';
 import { RoomsWrapper } from '@/components/search/logic';
 
 export default function Rooms() {
-  const { data: session } = useSession();
-  console.log(session?.user.email, session?.user.lastname);
+  // const { data: session } = useSession();
+  // console.log(session?.user.email, session?.user.lastname);
   return (
     <main className='page rooms-page'>
       <Container

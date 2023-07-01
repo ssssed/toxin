@@ -76,7 +76,7 @@ const Pagination: FC<Pagination> = ({
     }
 
     setArrOfCurrButtons(tempNumberOfPages);
-    setCurrentPage(currentButton);
+    // setCurrentPage(currentButton);
   }, [currentButton, isDesktopResolution, elementPerPage]);
 
   return (
@@ -96,7 +96,10 @@ const Pagination: FC<Pagination> = ({
             className={`${buttonClass} ${
               number === currentPage && buttonActiveClass
             }`}
-            onClick={() => setCurrentButton(+number)}
+            onClick={() => {
+              setCurrentButton(+number);
+              setCurrentPage(+number);
+            }}
           >
             {number}
           </button>
