@@ -29,15 +29,17 @@ const Slider: FC<Slider> = ({ images }) => {
       observer
       loop
     >
-      {images.map(image => (
-        <SwiperSlide key={image}>
+      {images.map(({ image, alt, blur }) => (
+        <SwiperSlide key={alt}>
           <Image
-            src={`/${image}.svg`}
+            src={image}
             className='landing__image'
-            alt={image}
-            loading='lazy'
+            alt={alt}
+            placeholder='blur'
+            blurDataURL={blur}
             width={1440}
             height={830}
+            priority
           />
         </SwiperSlide>
       ))}

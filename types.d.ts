@@ -58,8 +58,14 @@ type Select = {
     onAccept?: () => void;
 }
 
+type Img = {
+    image: Image,
+    blur?: Image,
+    alt: string
+}
+
 type Slider = {
-    images: string[];
+    images: Img[];
 }
 
 type InputGroup = {
@@ -149,7 +155,15 @@ type Rooms = {
 
 type Checkbox = {
     name: string;
-    children?: string;
+    children?: React.ReactNode;
     checked?: boolean;
+    onChange?: () => void;
+}
+
+type CheckboxGroup = {
+    children: React.ReactNode;
+    name: string;
+    ref: RefObject<HTMLDivElement>;
+    groupClass?: string;
     onChange?: () => void;
 }
