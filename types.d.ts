@@ -60,7 +60,6 @@ type Select = {
 
 type Img = {
     image: Image,
-    blur?: Image,
     alt: string
 }
 

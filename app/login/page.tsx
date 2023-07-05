@@ -1,6 +1,6 @@
 import { FormWrapper } from '@/components/login/logic';
 import { Slider } from '@/components/ui-ud/ui';
-import image_2 from '@/public/landing-2.svg';
+import image_2 from '@/public/landing-2.png';
 import image_3 from '@/public/landing-3.png';
 
 const LOGIN_IMAGES: Img[] = [
