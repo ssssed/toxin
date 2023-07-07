@@ -38,7 +38,7 @@ const Checkbox: FC<Checkbox> = ({
             </svg>
           </CSSTransition>
         </div>
-        <span className='checkbox-text'>{children}</span>
+        <div className='checkbox-text'>{children}</div>
       </label>
     </div>
   );

@@ -1,14 +1,31 @@
 @import '/utils/variables.scss';
 
 .checkbox {
+  & h4 {
+    color: $dark-shade-75;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 18px;
+  }
+
+  & p {
+    color: $dark-shade-50;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+  }
+
   &-container {
     display: flex;
     align-items: center;
+    user-select: none;
   }
 
   &-label {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
   }
 
@@ -22,8 +39,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 18px;
-    height: 18px;
+    min-width: 18px;
+    min-height: 18px;
     border: 1px solid $dark-shade-25;
     border-radius: 4px;
     margin-right: 10px;
