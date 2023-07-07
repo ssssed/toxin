@@ -1,38 +1,21 @@
 'use client';
-
+import accordion from '@/public/accordion.svg';
 import Image from 'next/image';
 import './style.scss';
-import { FC, useMemo } from 'react';
+import { FC } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-const Select: FC<Select> = ({ isShow, setShow, children, value }) => {
+const Select: FC<Select> = ({ isShow, setShow, children, title }) => {
   const handleToggleList = () => setShow(!isShow);
-
-  const title = useMemo(() => {
-    if (+value === 0) return 'Сколько гостей';
-    if (+value === 1) {
-      return `${+value} гость`;
-    } else if (+value % 10 === 1 && +value !== 11) {
-      return `${+value} гость`;
-    } else if (
-      +value % 10 >= 2 &&
-      +value % 10 <= 4 &&
-      (+value < 10 || +value > 20)
-    ) {
-      return `${+value} гостя`;
-    } else {
-      return `${+value} гостей`;
-    }
-  }, [value]);
 
   return (
     <div
       className={`select ${isShow && 'select_open'}`}
-      placeholder='Cколько гостей'
+      placeholder={title}
     >
       <p className='select__text'>{title}</p>
       <Image
-        src='/accordion.svg'
+        src={accordion}
         className={`select__img ${isShow && 'select__img_active'}`}
         alt='accordion'
         onClick={handleToggleList}
@@ -45,7 +28,9 @@ const Select: FC<Select> = ({ isShow, setShow, children, value }) => {
         timeout={200}
         unmountOnExit
       >
-        {children}
+        <div className='select__list'>
+          <div className='select__content'>{children}</div>
+        </div>
       </CSSTransition>
     </div>
   );

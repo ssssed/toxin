@@ -1,7 +1,33 @@
-import { Checkbox, Container, Label } from '@/components/ui-ud/ui';
-import { useState } from 'react';
+import {
+  Checkbox,
+  Container,
+  Label,
+  Option,
+  Select,
+} from '@/components/ui-ud/ui';
+import React, { useMemo, useState } from 'react';
 
 const LeftBarWrapper = () => {
+  const [isComfortShow, setComfortShow] = useState<boolean>(false);
+
+  const [bedrooms, setBedrooms] = useState<number>(1);
+  const [beds, setBeds] = useState<number>(1);
+  const [bathrooms, setBathrooms] = useState<number>(1);
+  const convenience = {
+    bedrooms: {
+      increment: () => setBedrooms(prev => prev + 1),
+      decrement: () => setBedrooms(prev => (prev - 1 >= 1 ? prev - 1 : prev)),
+    },
+    beds: {
+      increment: () => setBeds(prev => prev + 1),
+      decrement: () => setBeds(prev => (prev - 1 >= 1 ? prev - 1 : prev)),
+    },
+    bathrooms: {
+      increment: () => setBathrooms(prev => prev + 1),
+      decrement: () => setBathrooms(prev => (prev - 1 >= 1 ? prev - 1 : prev)),
+    },
+  };
+
   const [isSmokeChecked, setSmokeChecked] = useState<boolean>(false);
   const [isAnimalChecked, setAnimalChecked] = useState<boolean>(false);
   const [isInviteChecked, setInviteChecked] = useState<boolean>(false);
@@ -15,6 +41,59 @@ const LeftBarWrapper = () => {
   const handleToggleWide = () => setWide(!isWide);
   const handleToggleAssistantForDisabled = () =>
     setAssistantForDisabled(!hasAssistantForDisabled);
+
+  const bedroomsTitle = useMemo(() => {
+    if (+bedrooms === 1) {
+      return `${+bedrooms} спальня`;
+    } else if (+bedrooms % 10 === 1 && +bedrooms !== 11) {
+      return `${+bedrooms} спальня`;
+    } else if (
+      +bedrooms % 10 >= 2 &&
+      +bedrooms % 10 <= 4 &&
+      (+bedrooms < 10 || +bedrooms > 20)
+    ) {
+      return `${+bedrooms} спальни`;
+    } else {
+      return `${+bedrooms} спален`;
+    }
+  }, [bedrooms]);
+
+  const bedTitle = useMemo(() => {
+    if (+beds === 1) {
+      return `${+beds} кровать`;
+    } else if (+beds % 10 === 1 && +beds !== 11) {
+      return `${+beds} кровать`;
+    } else if (
+      +beds % 10 >= 2 &&
+      +beds % 10 <= 4 &&
+      (+beds < 10 || +beds > 20)
+    ) {
+      return `${+beds} кровати`;
+    } else {
+      return `${+beds} кроватей`;
+    }
+  }, [beds]);
+
+  const bathroomTitle = useMemo(() => {
+    if (+bathrooms === 1) {
+      return `${+bathrooms} ванная комната`;
+    } else if (+bathrooms % 10 === 1 && +bathrooms !== 11) {
+      return `${+bathrooms} ванная комната`;
+    } else if (
+      +bathrooms % 10 >= 2 &&
+      +bathrooms % 10 <= 4 &&
+      (+bathrooms < 10 || +bathrooms > 20)
+    ) {
+      return `${+bathrooms} ванные комнаты`;
+    } else {
+      return `${+bathrooms} ванных комнат`;
+    }
+  }, [bathrooms]);
+
+  const title = useMemo(
+    () => `${bedroomsTitle}, ${bedTitle}, ${bathroomTitle}`,
+    [bedroomsTitle, bedTitle, bathroomTitle]
+  );
 
   return (
     <Container
@@ -91,6 +170,39 @@ const LeftBarWrapper = () => {
             </Container>
           </Checkbox>
         </Container>
+      </Container>
+      <Container
+        direction='column'
+        gap={7}
+      >
+        <Label>удобства номера</Label>
+        <Select
+          isShow={isComfortShow}
+          setShow={setComfortShow}
+          title={title}
+        >
+          <Option
+            value={bedrooms}
+            increment={convenience.bedrooms.increment}
+            decrement={convenience.bedrooms.decrement}
+          >
+            <Label>Спальни</Label>
+          </Option>
+          <Option
+            value={beds}
+            increment={convenience.beds.increment}
+            decrement={convenience.beds.decrement}
+          >
+            <Label>Кровати</Label>
+          </Option>
+          <Option
+            value={bathrooms}
+            increment={convenience.bathrooms.increment}
+            decrement={convenience.bathrooms.decrement}
+          >
+            <Label>Ванные комнаты</Label>
+          </Option>
+        </Select>
       </Container>
     </Container>
   );

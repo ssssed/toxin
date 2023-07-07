@@ -7,6 +7,21 @@
 
   &__text {
     margin-right: auto;
+    white-space: nowrap;
+  }
+
+  &__buttons {
+    display: flex;
+    min-width: 92px;
+    align-items: center;
+
+    & button:first-child {
+      margin-right: auto;
+    }
+
+    & button:last-child {
+      margin-left: auto;
+    }
   }
 
   &__button {

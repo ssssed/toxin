@@ -27,6 +27,23 @@ const LandingForm: FC<LandingForm> = ({
     () => guest.adult + guest.baby + guest.children,
     [guest]
   );
+
+  const title = useMemo(() => {
+    if (+countPeople === 0) return 'Сколько гостей';
+    if (+countPeople === 1) {
+      return `${+countPeople} гость`;
+    } else if (+countPeople % 10 === 1 && +countPeople !== 11) {
+      return `${+countPeople} гость`;
+    } else if (
+      +countPeople % 10 >= 2 &&
+      +countPeople % 10 <= 4 &&
+      (+countPeople < 10 || +countPeople > 20)
+    ) {
+      return `${+countPeople} гостя`;
+    } else {
+      return `${+countPeople} гостей`;
+    }
+  }, [countPeople]);
   return (
     <form
       className='landing-form wow animate__animated animate__fadeInLeft'
@@ -49,7 +66,7 @@ const LandingForm: FC<LandingForm> = ({
           <Select
             isShow={isShowSelectContent}
             setShow={setShowSelectContent}
-            value={countPeople}
+            title={title}
           >
             <div className='select__list'>
               <div className='select__content'>

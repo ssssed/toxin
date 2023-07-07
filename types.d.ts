@@ -54,7 +54,7 @@ type Select = {
     isShow: boolean;
     setShow: React.Dispatch<SetStateAction<boolean>>;
     children: React.ReactNode;
-    value: string | number;
+    title: string;
     onAccept?: () => void;
 }
 
