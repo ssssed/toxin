@@ -4,11 +4,13 @@ import {
   Label,
   Option,
   Select,
+  SelectButtonGroups,
 } from '@/components/ui-ud/ui';
 import React, { useMemo, useState } from 'react';
 
 const LeftBarWrapper = () => {
   const [isComfortShow, setComfortShow] = useState<boolean>(false);
+  const [isGuestShow, setGuestShow] = useState<boolean>(false);
 
   const [bedrooms, setBedrooms] = useState<number>(1);
   const [beds, setBeds] = useState<number>(1);
@@ -27,6 +29,47 @@ const LeftBarWrapper = () => {
       decrement: () => setBathrooms(prev => (prev - 1 >= 1 ? prev - 1 : prev)),
     },
   };
+
+  const [guest, setGuest] = useState<Guest>({
+    adult: 0,
+    children: 0,
+    baby: 0,
+  });
+  const guestActions = {
+    adult: {
+      increment: () =>
+        setGuest(state => ({ ...state, adult: state.adult + 1 })),
+      decrement: () =>
+        setGuest(state => ({
+          ...state,
+          adult: state.adult - 1 >= 0 ? state.adult - 1 : state.adult,
+        })),
+    },
+    baby: {
+      increment: () => setGuest(state => ({ ...state, baby: state.baby + 1 })),
+      decrement: () =>
+        setGuest(state => ({
+          ...state,
+          children:
+            state.children - 1 >= 0 ? state.children - 1 : state.children,
+        })),
+    },
+    children: {
+      increment: () =>
+        setGuest(state => ({ ...state, children: state.children + 1 })),
+      decrement: () =>
+        setGuest(state => ({
+          ...state,
+          baby: state.baby - 1 >= 0 ? state.baby - 1 : state.baby,
+        })),
+    },
+  };
+  const handleClearGuest = () =>
+    setGuest({
+      adult: 0,
+      children: 0,
+      baby: 0,
+    });
 
   const [isSmokeChecked, setSmokeChecked] = useState<boolean>(false);
   const [isAnimalChecked, setAnimalChecked] = useState<boolean>(false);
@@ -90,6 +133,28 @@ const LeftBarWrapper = () => {
     }
   }, [bathrooms]);
 
+  const countPeople = useMemo(
+    () => guest.adult + guest.baby + guest.children,
+    [guest]
+  );
+
+  const titleGuest = useMemo(() => {
+    if (+countPeople === 0) return 'Сколько гостей';
+    if (+countPeople === 1) {
+      return `${+countPeople} гость`;
+    } else if (+countPeople % 10 === 1 && +countPeople !== 11) {
+      return `${+countPeople} гость`;
+    } else if (
+      +countPeople % 10 >= 2 &&
+      +countPeople % 10 <= 4 &&
+      (+countPeople < 10 || +countPeople > 20)
+    ) {
+      return `${+countPeople} гостя`;
+    } else {
+      return `${+countPeople} гостей`;
+    }
+  }, [countPeople]);
+
   const title = useMemo(
     () => `${bedroomsTitle}, ${bedTitle}, ${bathroomTitle}`,
     [bedroomsTitle, bedTitle, bathroomTitle]
@@ -102,6 +167,43 @@ const LeftBarWrapper = () => {
       items='flex-start'
       gap={30}
     >
+      <Container
+        direction='column'
+        gap={5}
+      >
+        <Label className='landing-form__visitor'>Гости</Label>
+        <Select
+          isShow={isGuestShow}
+          setShow={setGuestShow}
+          title={titleGuest}
+        >
+          <Option
+            value={guest.adult}
+            increment={guestActions.adult.increment}
+            decrement={guestActions.adult.decrement}
+          >
+            <Label>взрослые</Label>
+          </Option>
+          <Option
+            value={guest.children}
+            increment={guestActions.children.increment}
+            decrement={guestActions.children.decrement}
+          >
+            <Label>дети</Label>
+          </Option>
+          <Option
+            value={guest.baby}
+            increment={guestActions.baby.increment}
+            decrement={guestActions.baby.decrement}
+          >
+            <Label>младенцы</Label>
+          </Option>
+          <SelectButtonGroups
+            onClear={handleClearGuest}
+            onApply={() => {}}
+          />
+        </Select>
+      </Container>
       <Container
         direction='column'
         gap={17}

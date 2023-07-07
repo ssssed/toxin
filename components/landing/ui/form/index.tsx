@@ -7,6 +7,7 @@ import {
   SubmitButton,
   Title,
   Option,
+  SelectButtonGroups,
 } from '@/components/ui-ud/ui';
 import './style.scss';
 import { FC, useMemo, useState } from 'react';
@@ -68,45 +69,31 @@ const LandingForm: FC<LandingForm> = ({
             setShow={setShowSelectContent}
             title={title}
           >
-            <div className='select__list'>
-              <div className='select__content'>
-                <Option
-                  value={guest.adult}
-                  increment={changeGuest.handleAdultIncrement}
-                  decrement={changeGuest.handleAdultDecrement}
-                >
-                  <Label>взрослые</Label>
-                </Option>
-                <Option
-                  value={guest.children}
-                  increment={changeGuest.handleChildrenIncrement}
-                  decrement={changeGuest.handleChildrenDecrement}
-                >
-                  <Label>дети</Label>
-                </Option>
-                <Option
-                  value={guest.baby}
-                  increment={changeGuest.handleBabyIncrement}
-                  decrement={changeGuest.handleBabyDecrement}
-                >
-                  <Label>младенцы</Label>
-                </Option>
-                <div className='select__buttons'>
-                  <button
-                    className='select__button'
-                    onClick={onClear}
-                  >
-                    очистить
-                  </button>
-                  <button
-                    className='select__button'
-                    onClick={handleAcceptSelectContent}
-                  >
-                    применить
-                  </button>
-                </div>
-              </div>
-            </div>
+            <Option
+              value={guest.adult}
+              increment={changeGuest.handleAdultIncrement}
+              decrement={changeGuest.handleAdultDecrement}
+            >
+              <Label>взрослые</Label>
+            </Option>
+            <Option
+              value={guest.children}
+              increment={changeGuest.handleChildrenIncrement}
+              decrement={changeGuest.handleChildrenDecrement}
+            >
+              <Label>дети</Label>
+            </Option>
+            <Option
+              value={guest.baby}
+              increment={changeGuest.handleBabyIncrement}
+              decrement={changeGuest.handleBabyDecrement}
+            >
+              <Label>младенцы</Label>
+            </Option>
+            <SelectButtonGroups
+              onClear={onClear}
+              onApply={handleAcceptSelectContent}
+            />
           </Select>
         </Label>
         <SubmitButton className='landing-form__button'>

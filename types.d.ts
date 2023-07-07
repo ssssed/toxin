@@ -159,10 +159,7 @@ type Checkbox = {
     onChange?: () => void;
 }
 
-type CheckboxGroup = {
-    children: React.ReactNode;
-    name: string;
-    ref: RefObject<HTMLDivElement>;
-    groupClass?: string;
-    onChange?: () => void;
+type SelectButtonGroup = {
+    onClear: () => void;
+    onApply: () => void;
 }
