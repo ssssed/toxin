@@ -5,7 +5,10 @@ import {
   Option,
   Select,
   SelectButtonGroups,
+  Range,
+  Text,
 } from '@/components/ui-ud/ui';
+import { useNumeralForm } from '@/hook';
 import React, { useMemo, useState } from 'react';
 
 const LeftBarWrapper = () => {
@@ -85,53 +88,26 @@ const LeftBarWrapper = () => {
   const handleToggleAssistantForDisabled = () =>
     setAssistantForDisabled(!hasAssistantForDisabled);
 
-  const bedroomsTitle = useMemo(() => {
-    if (+bedrooms === 1) {
-      return `${+bedrooms} спальня`;
-    } else if (+bedrooms % 10 === 1 && +bedrooms !== 11) {
-      return `${+bedrooms} спальня`;
-    } else if (
-      +bedrooms % 10 >= 2 &&
-      +bedrooms % 10 <= 4 &&
-      (+bedrooms < 10 || +bedrooms > 20)
-    ) {
-      return `${+bedrooms} спальни`;
-    } else {
-      return `${+bedrooms} спален`;
-    }
-  }, [bedrooms]);
+  const bedroomsTitle = useMemo(
+    () => useNumeralForm(bedrooms, ['спальня', 'спальня', 'спальни', 'спален']),
+    [bedrooms]
+  );
 
-  const bedTitle = useMemo(() => {
-    if (+beds === 1) {
-      return `${+beds} кровать`;
-    } else if (+beds % 10 === 1 && +beds !== 11) {
-      return `${+beds} кровать`;
-    } else if (
-      +beds % 10 >= 2 &&
-      +beds % 10 <= 4 &&
-      (+beds < 10 || +beds > 20)
-    ) {
-      return `${+beds} кровати`;
-    } else {
-      return `${+beds} кроватей`;
-    }
-  }, [beds]);
+  const bedTitle = useMemo(
+    () => useNumeralForm(beds, ['кровать', 'кровать', 'кровати', 'кроватей']),
+    [beds]
+  );
 
-  const bathroomTitle = useMemo(() => {
-    if (+bathrooms === 1) {
-      return `${+bathrooms} ванная комната`;
-    } else if (+bathrooms % 10 === 1 && +bathrooms !== 11) {
-      return `${+bathrooms} ванная комната`;
-    } else if (
-      +bathrooms % 10 >= 2 &&
-      +bathrooms % 10 <= 4 &&
-      (+bathrooms < 10 || +bathrooms > 20)
-    ) {
-      return `${+bathrooms} ванные комнаты`;
-    } else {
-      return `${+bathrooms} ванных комнат`;
-    }
-  }, [bathrooms]);
+  const bathroomTitle = useMemo(
+    () =>
+      useNumeralForm(bathrooms, [
+        'ванная комната',
+        'ванная комната',
+        'ванные комнаты',
+        'ванных комнат',
+      ]),
+    [bathrooms]
+  );
 
   const countPeople = useMemo(
     () => guest.adult + guest.baby + guest.children,
@@ -140,25 +116,19 @@ const LeftBarWrapper = () => {
 
   const titleGuest = useMemo(() => {
     if (+countPeople === 0) return 'Сколько гостей';
-    if (+countPeople === 1) {
-      return `${+countPeople} гость`;
-    } else if (+countPeople % 10 === 1 && +countPeople !== 11) {
-      return `${+countPeople} гость`;
-    } else if (
-      +countPeople % 10 >= 2 &&
-      +countPeople % 10 <= 4 &&
-      (+countPeople < 10 || +countPeople > 20)
-    ) {
-      return `${+countPeople} гостя`;
-    } else {
-      return `${+countPeople} гостей`;
-    }
+    return useNumeralForm(countPeople, ['гость', 'гость', 'гостя', 'гостей']);
   }, [countPeople]);
 
   const title = useMemo(
     () => `${bedroomsTitle}, ${bedTitle}, ${bathroomTitle}`,
     [bedroomsTitle, bedTitle, bathroomTitle]
   );
+
+  const DEFAULT_RANGE_DATA = [5000, 10000];
+  const [range, setRange] = useState<number[]>(DEFAULT_RANGE_DATA);
+  const handleRangeChange = (arr: number[]) => {
+    setRange(arr);
+  };
 
   return (
     <Container
@@ -203,6 +173,31 @@ const LeftBarWrapper = () => {
             onApply={() => {}}
           />
         </Select>
+      </Container>
+      <Container
+        direction='column'
+        gap={13}
+      >
+        <Container
+          direction='row'
+          content='space-between'
+          items='center'
+          padding='0 0 12px'
+        >
+          <Label>диапазон цены</Label>
+          <Text type='light'>
+            {range[0]}₽ - {range[1]}₽
+          </Text>
+        </Container>
+        <Range
+          min={1000}
+          max={15000}
+          step={10}
+          value={range}
+          onInput={handleRangeChange}
+          defaultValue={DEFAULT_RANGE_DATA}
+        />
+        <Text type='light'>Стоимость за сутки пребывания в номере</Text>
       </Container>
       <Container
         direction='column'
@@ -268,7 +263,9 @@ const LeftBarWrapper = () => {
               gap={5}
             >
               <h4>Помощник для инвалидов</h4>
-              <p>На 1 этаже вас встретит специалист и проводит до номера.</p>
+              <Text type='light'>
+                На 1 этаже вас встретит специалист и проводит до номера.
+              </Text>
             </Container>
           </Checkbox>
         </Container>

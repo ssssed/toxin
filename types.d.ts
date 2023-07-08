@@ -121,9 +121,11 @@ type Container = {
     center?: boolean;
     padding?: Property.Padding<string | number>;
     items?: Property.AlignItems;
+    content?: Property.JustifyContent;
 }
 
 type TextUI = {
+    type: "default" | "light";
     children: React.ReactNode;
 }
 
@@ -162,4 +164,17 @@ type Checkbox = {
 type SelectButtonGroup = {
     onClear: () => void;
     onApply: () => void;
+}
+
+type RangeInput = {
+    id?: string;
+    min: number;
+    max: number;
+    step?: number;
+    defaultValue: number[];
+    value: number[];
+    onInput?: (value: number[], userInteraction: boolean) => void;
+    className?: string;
+    style?: CSSProperties;
+    disabled?: boolean;
 }
