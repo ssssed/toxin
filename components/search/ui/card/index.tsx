@@ -3,13 +3,15 @@
 import { Subtitle } from '@/components/ui-ud/ui';
 import { Room } from '@prisma/client';
 import Image from 'next/image';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import './style.scss';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, EffectFade } from 'swiper';
+import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import SwiperType, { Pagination, Navigation, EffectFade } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/scss/pagination';
+import 'swiper/scss/navigation';
+import accordion from '@/public/accordion.svg';
 import dynamic from 'next/dynamic';
 
 enum RoomType {
@@ -25,13 +27,23 @@ const Star = dynamic(() => import('@/components/ui-ud/ui/star'), {
 });
 
 const Card: FC<Room> = room => {
+  const [swiper, setSwiper] = useState<SwiperType | null>(null);
+
+  const handleNextSlide = () => swiper!.slideNext();
+  const handlePrevSlide = () => swiper!.slidePrev();
+
   const rating = Math.floor(Math.random() * 5);
   return (
     <div className='room'>
       <Swiper
-        style={{ width: '100%' }}
-        modules={[Pagination, EffectFade]}
+        className='room-slider'
+        modules={[Pagination, Navigation, EffectFade]}
         slidesPerView={1}
+        navigation={{
+          nextEl: 'room__button_next',
+          prevEl: 'room__button_prev',
+        }}
+        onSwiper={setSwiper}
         pagination={{
           clickable: true,
           type: 'bullets',
@@ -43,15 +55,27 @@ const Card: FC<Room> = room => {
         loop
       >
         {IMAGES.map(link => (
-          <SwiperSlide key={link}>
+          <SwiperSlide
+            key={link}
+            className='room__slide'
+          >
             <Image
               src={link}
               alt='room'
               width={270}
               height={151}
+              className='room__slide-img'
             />
           </SwiperSlide>
         ))}
+        <button
+          className='room__button room__button_next'
+          onClick={handleNextSlide}
+        ></button>
+        <button
+          className='room__button room__button_prev'
+          onClick={handlePrevSlide}
+        ></button>
       </Swiper>
       <div className='room__content'>
         <div className='room__info-bar'>

@@ -48,6 +48,37 @@
     align-items: center;
   }
 
+  &-slider {
+    width: 100%;
+  }
+
+  &__button {
+    width: 44px;
+    height: 44px;
+    background-color: transparent;
+    border: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    cursor: pointer;
+    background-image: url('../../../../public/accordion-white.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    fill: #ffffff !important;
+
+    &_prev {
+      transform: translateY(-50%) rotate(90deg);
+      fill: #ffffff !important;
+      left: 0;
+    }
+    &_next {
+      fill: #ffffff !important;
+      right: 0;
+      transform: translateY(-50%) rotate(-90deg);
+    }
+  }
+
   .swiper-pagination {
     display: flex;
     justify-content: flex-end;
