@@ -12,6 +12,7 @@ import {
 import './style.scss';
 import { FC, useMemo, useState } from 'react';
 import 'animate.css';
+import { useNumeralForm } from '@/hook';
 
 const LandingForm: FC<LandingForm> = ({
   onSubmit,
@@ -31,19 +32,7 @@ const LandingForm: FC<LandingForm> = ({
 
   const title = useMemo(() => {
     if (+countPeople === 0) return 'Сколько гостей';
-    if (+countPeople === 1) {
-      return `${+countPeople} гость`;
-    } else if (+countPeople % 10 === 1 && +countPeople !== 11) {
-      return `${+countPeople} гость`;
-    } else if (
-      +countPeople % 10 >= 2 &&
-      +countPeople % 10 <= 4 &&
-      (+countPeople < 10 || +countPeople > 20)
-    ) {
-      return `${+countPeople} гостя`;
-    } else {
-      return `${+countPeople} гостей`;
-    }
+    return useNumeralForm(countPeople, ['гость', 'гость', 'гостя', 'гостей']);
   }, [countPeople]);
   return (
     <form
