@@ -8,6 +8,7 @@ const Option: FC<Option> = ({ children, value, increment, decrement }) => {
       <div className='select-item__text'>{children}</div>
       <div className='select-item__buttons'>
         <button
+          type='button'
           className='select-item__button select-item__button_increment'
           onClick={decrement}
         >
@@ -17,6 +18,7 @@ const Option: FC<Option> = ({ children, value, increment, decrement }) => {
           <Label>{value}</Label>
         </div>
         <button
+          type='button'
           className='select-item__button'
           onClick={increment}
         >
