@@ -26,6 +26,7 @@ type Option = {
     value: string | number;
     increment: () => void;
     decrement: () => void;
+    min?: number;
 }
 
 type GuestDataChanging = {

@@ -5,6 +5,10 @@
   align-items: center;
   gap: 12px;
 
+  &_disabled {
+    opacity: 0.38;
+  }
+
   &__text {
     margin-right: auto;
     white-space: nowrap;

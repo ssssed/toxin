@@ -23,14 +23,17 @@ const LeftBarWrapper = () => {
     bedrooms: {
       increment: () => setBedrooms(prev => prev + 1),
       decrement: () => setBedrooms(prev => (prev - 1 >= 1 ? prev - 1 : prev)),
+      min: 1,
     },
     beds: {
       increment: () => setBeds(prev => prev + 1),
       decrement: () => setBeds(prev => (prev - 1 >= 1 ? prev - 1 : prev)),
+      min: 1,
     },
     bathrooms: {
       increment: () => setBathrooms(prev => prev + 1),
       decrement: () => setBathrooms(prev => (prev - 1 >= 1 ? prev - 1 : prev)),
+      min: 1,
     },
   };
 
@@ -300,6 +303,7 @@ const LeftBarWrapper = () => {
             value={bedrooms}
             increment={convenience.bedrooms.increment}
             decrement={convenience.bedrooms.decrement}
+            min={convenience.bedrooms.min}
           >
             <Label>Спальни</Label>
           </Option>
@@ -307,6 +311,7 @@ const LeftBarWrapper = () => {
             value={beds}
             increment={convenience.beds.increment}
             decrement={convenience.beds.decrement}
+            min={convenience.beds.min}
           >
             <Label>Кровати</Label>
           </Option>
@@ -314,6 +319,7 @@ const LeftBarWrapper = () => {
             value={bathrooms}
             increment={convenience.bathrooms.increment}
             decrement={convenience.bathrooms.decrement}
+            min={convenience.bathrooms.min}
           >
             <Label>Ванные комнаты</Label>
           </Option>
