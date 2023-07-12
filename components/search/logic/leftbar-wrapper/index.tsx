@@ -7,6 +7,7 @@ import {
   SelectButtonGroups,
   Range,
   Text,
+  CheckboxList,
 } from '@/components/ui-ud/ui';
 import { useNumeralForm } from '@/hook';
 import React, { useMemo, useState } from 'react';
@@ -129,6 +130,21 @@ const LeftBarWrapper = () => {
   const handleRangeChange = (arr: number[]) => {
     setRange(arr);
   };
+
+  const [isAddServiceShow, setAddServiceShow] = useState<boolean>(false);
+  const [hasBreakfast, setBreakfast] = useState<boolean>(false);
+  const [hasTable, setTable] = useState<boolean>(false);
+  const [hasChair, setChair] = useState<boolean>(false);
+  const [hasChildBad, setChildBad] = useState<boolean>(false);
+  const [hasTv, setTv] = useState<boolean>(false);
+  const [hasShampoo, setShampoo] = useState<boolean>(false);
+
+  const handleBreakfastChange = () => setBreakfast(!hasBreakfast);
+  const handleTableChange = () => setTable(!hasTable);
+  const handleChairChange = () => setChair(!hasChair);
+  const handleChildBadChange = () => setChildBad(!hasChildBad);
+  const handleTvChange = () => setTv(!hasTv);
+  const handleShampooChange = () => setShampoo(!hasShampoo);
 
   return (
     <Container
@@ -303,6 +319,54 @@ const LeftBarWrapper = () => {
           </Option>
         </Select>
       </Container>
+      <CheckboxList
+        title='дополнительные удобства'
+        isShow={isAddServiceShow}
+        setShow={setAddServiceShow}
+      >
+        <Checkbox
+          name='breakfast'
+          checked={hasBreakfast}
+          onChange={handleBreakfastChange}
+        >
+          Завтрак
+        </Checkbox>
+        <Checkbox
+          name='table'
+          checked={hasTable}
+          onChange={handleTableChange}
+        >
+          Писменный стол
+        </Checkbox>
+        <Checkbox
+          name='chair'
+          checked={hasChair}
+          onChange={handleChairChange}
+        >
+          Стул для кормления
+        </Checkbox>
+        <Checkbox
+          name='child-bad'
+          checked={hasChildBad}
+          onChange={handleChildBadChange}
+        >
+          Кроватка
+        </Checkbox>
+        <Checkbox
+          name='tv'
+          checked={hasTv}
+          onChange={handleTvChange}
+        >
+          Телевизор
+        </Checkbox>
+        <Checkbox
+          name='shampoo'
+          checked={hasShampoo}
+          onChange={handleShampooChange}
+        >
+          Шампунь
+        </Checkbox>
+      </CheckboxList>
     </Container>
   );
 };

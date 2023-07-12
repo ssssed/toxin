@@ -1,7 +1,6 @@
 'use client';
 
-import { FC, useState } from 'react';
-// import React, { useState } from 'react';
+import { FC } from 'react';
 import './style.scss';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';

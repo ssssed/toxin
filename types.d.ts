@@ -178,3 +178,10 @@ type RangeInput = {
     style?: CSSProperties;
     disabled?: boolean;
 }
+
+type CheckboxList = {
+    isShow: boolean;
+    setShow: React.Dispatch<SetStateAction<boolean>>;
+    title?: string;
+    children: React.ReactNode;
+}
