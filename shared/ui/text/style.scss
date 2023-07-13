@@ -1,0 +1,16 @@
+@import '/app/styles/index.scss';
+
+.text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: $dark-shade-75;
+
+  &_light {
+    color: $dark-shade-50;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 14px;
+  }
+}

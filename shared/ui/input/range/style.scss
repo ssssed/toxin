@@ -1,0 +1,25 @@
+@import '/app/styles/index.scss';
+
+.range-slider {
+  border-radius: 3px !important;
+  height: 6px !important;
+  width: 100% !important;
+  border: 1px solid $dark-shade-25 !important;
+  background: #fff !important;
+  z-index: 0;
+
+  &__thumb {
+    width: 14px !important;
+    height: 14px !important;
+    border-radius: 10px !important;
+    background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%) !important;
+    border: 2px solid #fff !important;
+  }
+
+  &__range {
+    padding: 3px !important;
+    height: 100% !important;
+    background: linear-gradient(180deg, #6fcf97 0%, #66d2ea 100%) !important;
+    transition: height 0.3s;
+  }
+}

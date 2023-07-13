@@ -1,0 +1,44 @@
+@import '/app/styles/index.scss';
+
+.select-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  &_disabled {
+    opacity: 0.38;
+  }
+
+  &__text {
+    margin-right: auto;
+    white-space: nowrap;
+  }
+
+  &__buttons {
+    display: flex;
+    min-width: 92px;
+    align-items: center;
+
+    & button:first-child {
+      margin-right: auto;
+    }
+
+    & button:last-child {
+      margin-left: auto;
+    }
+  }
+
+  &__button {
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid $dark-shade-50;
+    color: $dark-shade-50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    cursor: pointer;
+  }
+}

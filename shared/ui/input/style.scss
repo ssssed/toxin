@@ -1,0 +1,15 @@
+@import '/app/styles/index.scss';
+
+.input {
+  padding: 12px 15px;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 24px;
+  color: $dark-shade-25;
+  border: 1px solid $dark-shade-25;
+  border-radius: 4px;
+
+  &:focus {
+    outline: none;
+  }
+}
