@@ -4,8 +4,8 @@ import image_2 from '@/public/landing-2.png';
 import image_3 from '@/public/landing-3.png';
 
 const REGISTER_IMAGES: Img[] = [
-  { image: image_2, alt: 'landing-2', blur: '/blur-landing-2.png' },
-  { image: image_3, alt: 'landing-3', blur: '/blur-landing-3.png' },
+  { image: image_2, alt: 'landing-2' },
+  { image: image_3, alt: 'landing-3' },
 ];
 
 const Register = () => {

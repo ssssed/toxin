@@ -153,7 +153,7 @@ const FormWrapper = () => {
             value={isOn}
             onToggle={handleToggleSwitch}
           />
-          <Text>Получать спецпредложения</Text>
+          <Text type='default'>Получать спецпредложения</Text>
         </Container>
       </Container>
       <SubmitButton>зарегистрироваться</SubmitButton>

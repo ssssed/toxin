@@ -60,8 +60,8 @@ type Select = {
 }
 
 type Img = {
-    image: Image,
-    alt: string
+    image: Image;
+    alt: string;
 }
 
 type Slider = {
