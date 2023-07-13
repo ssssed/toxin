@@ -7,10 +7,12 @@ import {
   SubmitButton,
   Title,
   Option,
+  SelectButtonGroups,
 } from '@/components/ui-ud/ui';
 import './style.scss';
 import { FC, useMemo, useState } from 'react';
 import 'animate.css';
+import { useNumeralForm } from '@/hook';
 
 const LandingForm: FC<LandingForm> = ({
   onSubmit,
@@ -27,6 +29,11 @@ const LandingForm: FC<LandingForm> = ({
     () => guest.adult + guest.baby + guest.children,
     [guest]
   );
+
+  const title = useMemo(() => {
+    if (+countPeople === 0) return 'Сколько гостей';
+    return useNumeralForm(countPeople, ['гость', 'гость', 'гостя', 'гостей']);
+  }, [countPeople]);
   return (
     <form
       className='landing-form wow animate__animated animate__fadeInLeft'
@@ -49,47 +56,33 @@ const LandingForm: FC<LandingForm> = ({
           <Select
             isShow={isShowSelectContent}
             setShow={setShowSelectContent}
-            value={countPeople}
+            title={title}
           >
-            <div className='select__list'>
-              <div className='select__content'>
-                <Option
-                  value={guest.adult}
-                  increment={changeGuest.handleAdultIncrement}
-                  decrement={changeGuest.handleAdultDecrement}
-                >
-                  <Label>взрослые</Label>
-                </Option>
-                <Option
-                  value={guest.children}
-                  increment={changeGuest.handleChildrenIncrement}
-                  decrement={changeGuest.handleChildrenDecrement}
-                >
-                  <Label>дети</Label>
-                </Option>
-                <Option
-                  value={guest.baby}
-                  increment={changeGuest.handleBabyIncrement}
-                  decrement={changeGuest.handleBabyDecrement}
-                >
-                  <Label>младенцы</Label>
-                </Option>
-                <div className='select__buttons'>
-                  <button
-                    className='select__button'
-                    onClick={onClear}
-                  >
-                    очистить
-                  </button>
-                  <button
-                    className='select__button'
-                    onClick={handleAcceptSelectContent}
-                  >
-                    применить
-                  </button>
-                </div>
-              </div>
-            </div>
+            <Option
+              value={guest.adult}
+              increment={changeGuest.handleAdultIncrement}
+              decrement={changeGuest.handleAdultDecrement}
+            >
+              <Label>взрослые</Label>
+            </Option>
+            <Option
+              value={guest.children}
+              increment={changeGuest.handleChildrenIncrement}
+              decrement={changeGuest.handleChildrenDecrement}
+            >
+              <Label>дети</Label>
+            </Option>
+            <Option
+              value={guest.baby}
+              increment={changeGuest.handleBabyIncrement}
+              decrement={changeGuest.handleBabyDecrement}
+            >
+              <Label>младенцы</Label>
+            </Option>
+            <SelectButtonGroups
+              onClear={onClear}
+              onApply={handleAcceptSelectContent}
+            />
           </Select>
         </Label>
         <SubmitButton className='landing-form__button'>

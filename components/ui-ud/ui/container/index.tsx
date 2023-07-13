@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import { FC } from 'react';
 
 const Container: FC<Container> = ({
   children,
@@ -8,18 +8,20 @@ const Container: FC<Container> = ({
   center = false,
   padding = '0',
   items = 'normal',
+  content = 'normal',
 }) => {
   return (
     <div
       style={{
-          display: 'flex',
-          alignItems: items,
-          maxWidth,
-          width: "100%",
-          gap,
-          flexDirection: direction,
-          padding,
-          margin: center ? '0 auto' : 0,
+        display: 'flex',
+        alignItems: items,
+        maxWidth,
+        width: '100%',
+        gap,
+        flexDirection: direction,
+        justifyContent: content,
+        padding,
+        margin: center ? '0 auto' : 0,
       }}
     >
       {children}

@@ -17,11 +17,16 @@ import Switch from "./switch";
 import Container from "./container";
 import Text from "./text";
 import Star from "./star";
+import Checkbox from "./chekbox";
+import SelectButtonGroups from "./select/button-groups";
+import Range from "./input/range";
+import CheckboxList from "./chekbox-list";
 
 export {
     Footer, Title, Subtitle, Label,
     Header, SubmitButton, DatePicker,
-    Select, Option, Slider, Input,
-    Form, InputGroup, FormInfoBar, Button,
-    Switch, Container, Text, Star
+    Select, Option, SelectButtonGroups, Slider,
+    Input, Form, InputGroup, FormInfoBar,
+    Button, Switch, Container, Text,
+    Star, Checkbox, Range, CheckboxList,
 }

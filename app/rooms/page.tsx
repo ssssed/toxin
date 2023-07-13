@@ -1,13 +1,13 @@
 'use client';
 
 import { useSession } from 'next-auth/react';
-import { Hotels } from '@/components/search/ui';
 import { Container } from '@/components/ui-ud/ui';
 import './style.scss';
+import { LeftBarWrapper, RoomsWrapper } from '@/components/search/logic';
 
 export default function Rooms() {
-  const { data: session } = useSession();
-  console.log(session?.user.email, session?.user.lastname);
+  // const { data: session } = useSession();
+  // console.log(session?.user.email, session?.user.lastname);
   return (
     <main className='page rooms-page'>
       <Container
@@ -16,8 +16,8 @@ export default function Rooms() {
         maxWidth={1160}
         center
       >
-        <Container maxWidth={266}>Left Bar</Container>
-        <Hotels />
+        <LeftBarWrapper />
+        <RoomsWrapper />
       </Container>
     </main>
   );

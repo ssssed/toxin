@@ -26,6 +26,7 @@ type Option = {
     value: string | number;
     increment: () => void;
     decrement: () => void;
+    min?: number;
 }
 
 type GuestDataChanging = {
@@ -54,12 +55,17 @@ type Select = {
     isShow: boolean;
     setShow: React.Dispatch<SetStateAction<boolean>>;
     children: React.ReactNode;
-    value: string | number;
+    title: string;
     onAccept?: () => void;
 }
 
+type Img = {
+    image: Image;
+    alt: string;
+}
+
 type Slider = {
-    images: string[];
+    images: Img[];
 }
 
 type InputGroup = {
@@ -116,12 +122,67 @@ type Container = {
     center?: boolean;
     padding?: Property.Padding<string | number>;
     items?: Property.AlignItems;
+    content?: Property.JustifyContent;
 }
 
 type TextUI = {
+    type: "default" | "light";
     children: React.ReactNode;
 }
 
 type Start = {
     rating: number;
+}
+
+type Pagination = {
+    elementPerPage: number,
+    totalPage: number,
+    currentPage: number,
+    setCurrentPage: (page: number) => void;
+    buttonClass?: string;
+    buttonActiveClass?: string;
+    navigationButtonClass?: string;
+    navigationPrevContent?: React.ReactNode | string;
+    navigationNextContent?: React.ReactNode | string;
+    paginationClass?: string;
+}
+
+type Rooms = {
+    currentPage: number;
+    setCurrentPage: (page: number) => void;
+    rooms: Room[];
+    elementPerPage: number;
+    totalPage: number;
+}
+
+type Checkbox = {
+    name: string;
+    children?: React.ReactNode;
+    checked?: boolean;
+    onChange?: () => void;
+}
+
+type SelectButtonGroup = {
+    onClear: () => void;
+    onApply: () => void;
+}
+
+type RangeInput = {
+    id?: string;
+    min: number;
+    max: number;
+    step?: number;
+    defaultValue: number[];
+    value: number[];
+    onInput?: (value: number[], userInteraction: boolean) => void;
+    className?: string;
+    style?: CSSProperties;
+    disabled?: boolean;
+}
+
+type CheckboxList = {
+    isShow: boolean;
+    setShow: React.Dispatch<SetStateAction<boolean>>;
+    title?: string;
+    children: React.ReactNode;
 }
