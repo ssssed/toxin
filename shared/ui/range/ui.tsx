@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import '../styles/style.scss';
+import './style.scss';
 import RangeSlider from 'react-range-slider-input';
 import 'react-range-slider-input/dist/style.css';
 import { RangeInputType } from './types';

@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import '../styles/style.scss';
+import './style.scss';
 import Link from 'next/link';
 import { HeaderNav, HeaderButtons } from './ui/';
 
