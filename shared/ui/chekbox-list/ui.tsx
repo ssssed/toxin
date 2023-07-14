@@ -1,10 +1,10 @@
 import accordion from '@/public/accordion.svg';
 import Image from 'next/image';
-import '../styles/style.scss';
+import './style.scss';
 import { FC } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import Label from '../../label';
-import type { CheckboxListType } from '../types';
+import { Label } from '@/shared/ui';
+import type { CheckboxListType } from './types';
 
 const CheckboxList: FC<CheckboxListType> = ({
   title = '',
@@ -41,4 +41,4 @@ const CheckboxList: FC<CheckboxListType> = ({
   );
 };
 
-export default CheckboxList;
+export { CheckboxList };
