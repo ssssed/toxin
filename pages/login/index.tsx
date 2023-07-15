@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import image_2 from '@/public/landing-2.png';
 import image_3 from '@/public/landing-3.png';
-import { Img, Slider } from '@/shared/ui';
+import { Img, Slider } from '@/shared/ui/slider';
 import { AuthForm } from '@/features/auth';
 
 const LOGIN_IMAGES: Img[] = [

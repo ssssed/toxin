@@ -1,15 +1,8 @@
 import { paths } from "@/shared/routing";
-import type { NextAuthOptions, User } from "next-auth";
+import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from 'next-auth/providers/credentials'
-
-interface IUser extends User {
-    id: string;
-    name: string;
-    email: string;
-    lastname: string;
-    birstday: string;
-    password?: string;
-}
+import { prisma } from "@/app/configs/prisma";
+import { IUser } from './types';
 
 const authConfig: NextAuthOptions = {
     providers: [
@@ -47,12 +40,24 @@ const authConfig: NextAuthOptions = {
 
                 if (!credentials?.email || !credentials.password) return null;
 
-                if (credentials?.email === "test@test.ru" && credentials.password === "pass123") {
-                    const { password, ...credentialsWithOutPassword } = credentials;
-                    return credentialsWithOutPassword as IUser;
+                const user = await prisma.user.findFirst({
+                    where: {
+                        email: credentials.email
+                    }
+                })
+
+                if (!user) {
+                    throw new Error("Пользователь не найден")
                 }
 
-                return null;
+                const isPasswordCorrect = user?.password === credentials.password
+
+                if (!isPasswordCorrect) {
+                    throw new Error("Неправильный логин или пароль");
+                }
+
+                const { password, ...credentialsWithOutPassword } = user;
+                return credentialsWithOutPassword as IUser;
             }
         })
     ],

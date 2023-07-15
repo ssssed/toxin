@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import './style.scss';
-import Link from 'next/link';
-import { Label } from '@/shared/ui';
+import { Label } from '@/shared/ui/label';
 
 const FooterInfo = () => {
   const navigations: string[] = [

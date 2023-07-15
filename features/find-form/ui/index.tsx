@@ -1,18 +1,14 @@
 import { useRouter } from 'next/navigation';
 import React, { useMemo, useState } from 'react';
 import type { Guest } from '../types';
-import {
-  Label,
-  Option,
-  Select,
-  SubmitButton,
-  Title,
-  ButtonGroups,
-} from '@/shared/ui';
 import DatePicker from '@/shared/ui/datepicker';
 import { useNumeralForm } from '@/shared/helpers';
 import { paths } from '@/shared/routing';
 import './style.scss';
+import { Title } from '@/shared/ui/title';
+import { Label } from '@/shared/ui/label';
+import { ButtonGroups, Option, Select } from '@/shared/ui/select';
+import { SubmitButton } from '@/shared/ui/submit-button';
 
 export const FindForm = () => {
   const router = useRouter();

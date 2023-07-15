@@ -1,20 +1,18 @@
 import { paths } from '@/shared/routing';
-import {
-  Button,
-  Container,
-  Form,
-  FormInfoBar,
-  Input,
-  InputGroup,
-  Label,
-  Radio,
-  RadioGroup,
-  SubmitButton,
-  Switch,
-  Text,
-  Title,
-} from '@/shared/ui';
+import { Button } from '@/shared/ui/button';
+import { Container } from '@/shared/ui/container';
 import DatePicker from '@/shared/ui/datepicker';
+import { Form, FormInfoBar } from '@/shared/ui/form';
+import { Input } from '@/shared/ui/input';
+import { InputGroup } from '@/shared/ui/input-group';
+import { Label } from '@/shared/ui/label';
+import { Radio } from '@/shared/ui/radio';
+import { RadioGroup } from '@/shared/ui/radio-group';
+import { SubmitButton } from '@/shared/ui/submit-button';
+import { Switch } from '@/shared/ui/switch';
+import { Text } from '@/shared/ui/text';
+import { Title } from '@/shared/ui/title';
+import { Gender } from '@prisma/client';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
@@ -26,7 +24,7 @@ const RegisterForm = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [date, setDate] = useState<string>('');
-  const [sex, setSex] = useState<string>('NONE');
+  const [sex, setSex] = useState<Gender>('NONE');
 
   const [isOn, setIsOn] = useState(false);
 
@@ -45,7 +43,7 @@ const RegisterForm = () => {
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setDate(e.target.value);
   const handleSexChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setSex(e.target.value);
+    setSex(e.target.value as Gender);
 
   const handleNavigateToLoginPage = () => router.push(paths.login);
 
@@ -55,12 +53,17 @@ const RegisterForm = () => {
     try {
       console.log(sex);
 
-      //   api
-      //   if (response.ok) {
-      //     const data = await response.json();
-      //     console.log(data);
-      //     handleNavigateToLoginPage();
-      //   }
+      const data = {
+        email,
+        name,
+        lastname: lastName,
+        password,
+        sex,
+        date_birthday: date,
+        is_accept_special_demand: isOn,
+      };
+
+      // handleNavigateToLoginPage();
     } catch (error) {}
   };
 

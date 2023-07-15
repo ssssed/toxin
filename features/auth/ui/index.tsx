@@ -1,13 +1,10 @@
 import { paths } from '@/shared/routing';
-import {
-  Button,
-  Form,
-  FormInfoBar,
-  Input,
-  InputGroup,
-  SubmitButton,
-  Title,
-} from '@/shared/ui';
+import { Button } from '@/shared/ui/button';
+import { Form, FormInfoBar } from '@/shared/ui/form';
+import { Input } from '@/shared/ui/input';
+import { InputGroup } from '@/shared/ui/input-group';
+import { SubmitButton } from '@/shared/ui/submit-button';
+import { Title } from '@/shared/ui/title';
 import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { memo, useState } from 'react';

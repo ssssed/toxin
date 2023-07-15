@@ -8,8 +8,10 @@ import 'swiper/scss/pagination';
 import 'swiper/scss/navigation';
 import { Room } from '../types';
 import Image from 'next/image';
-import { Star, Subtitle } from '@/shared/ui';
+import { Star } from '@/shared/ui/star';
+
 import { IMAGES } from '../constants';
+import { Subtitle } from '@/shared/ui/subtitle';
 
 enum RoomType {
   LUXE = 'Люкс',

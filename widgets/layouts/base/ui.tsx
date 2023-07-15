@@ -1,4 +1,5 @@
-import { Footer, Header } from '@/shared/ui';
+import { Footer } from '@/shared/ui/footer';
+import { Header } from '@/shared/ui/header';
 import React, { FC, PropsWithChildren } from 'react';
 
 const Layout: FC<PropsWithChildren> = ({ children }) => {

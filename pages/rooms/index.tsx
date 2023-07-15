@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import './style.scss';
-import { Container } from '@/shared/ui';
+import { Container } from '@/shared/ui/container';
 import { Filter } from '@/features/filter';
 import { Rooms } from '@/features/rooms';
 

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Button } from '@/shared/ui';
+import { Button } from '@/shared/ui/button';
 import { signOut, useSession } from 'next-auth/react';
 
 const HeaderButtons = () => {

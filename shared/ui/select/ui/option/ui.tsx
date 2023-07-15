@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import './style.scss';
-import { Label } from '@/shared/ui';
+import { Label } from '@/shared/ui/label';
 import type { OptionType } from './types';
 
 const Option: FC<OptionType> = ({

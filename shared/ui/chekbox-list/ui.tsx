@@ -3,7 +3,7 @@ import Image from 'next/image';
 import './style.scss';
 import { FC } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { Label } from '@/shared/ui';
+import { Label } from '@/shared/ui/label';
 import type { CheckboxListType } from './types';
 
 const CheckboxList: FC<CheckboxListType> = ({

@@ -1,17 +1,13 @@
 import React, { useMemo, useState } from 'react';
 import { Guest } from '../types';
 import { useNumeralForm } from '@/shared/helpers';
-import {
-  ButtonGroups,
-  Checkbox,
-  CheckboxList,
-  Container,
-  Label,
-  Option,
-  Range,
-  Select,
-  Text,
-} from '@/shared/ui';
+import { Container } from '@/shared/ui/container';
+import { Label } from '@/shared/ui/label';
+import { ButtonGroups, Option, Select } from '@/shared/ui/select';
+import { Text } from '@/shared/ui/text';
+import { Range } from '@/shared/ui/range';
+import { Checkbox } from '@/shared/ui/chekbox';
+import { CheckboxList } from '@/shared/ui/chekbox-list';
 
 const Filter = () => {
   const [isComfortShow, setComfortShow] = useState<boolean>(false);

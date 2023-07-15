@@ -1,4 +1,3 @@
-import { Container, Pagination, Title } from '@/shared/ui';
 import Image from 'next/image';
 import { ELEMENT_PER_SLIDE, ROOMS, TOTAL_PAGE } from '../constants';
 import { useEffect, useState } from 'react';
@@ -7,6 +6,9 @@ import { RoomCard } from '@/entities/room';
 import arrow from '@/public/arrow.svg';
 import './style.scss';
 import { paths } from '@/shared/routing';
+import { Container } from '@/shared/ui/container';
+import { Title } from '@/shared/ui/title';
+import { Pagination } from '@/shared/ui/pagination';
 
 const Rooms = () => {
   const router = useRouter();
