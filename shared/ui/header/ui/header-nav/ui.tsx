@@ -1,19 +1,10 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 const HeaderNav = () => {
   return (
     <nav className='header__nav'>
-      <Link
-        href='#'
-        className='header__nav-link'
-      >
-        О нас
-      </Link>
-      <Link
-        href='#'
-        className='header__nav-list'
-      >
+      <p className='header__nav-link'>О нас</p>
+      <p className='header__nav-list'>
         Услуги
         <Image
           src='/accordion.svg'
@@ -21,23 +12,10 @@ const HeaderNav = () => {
           width={12}
           height={12}
         />
-      </Link>
-      <Link
-        href='#'
-        className='header__nav-link'
-      >
-        Вакансии
-      </Link>
-      <Link
-        href='#'
-        className='header__nav-link'
-      >
-        Новости
-      </Link>
-      <Link
-        href='#'
-        className='header__nav-list'
-      >
+      </p>
+      <p className='header__nav-link'>Вакансии</p>
+      <p className='header__nav-link'>Новости</p>
+      <p className='header__nav-list'>
         Соглашения
         <Image
           src='/accordion.svg'
@@ -45,7 +23,7 @@ const HeaderNav = () => {
           width={12}
           height={12}
         />
-      </Link>
+      </p>
     </nav>
   );
 };

@@ -43,12 +43,7 @@ const FooterInfo = () => {
           <Label>навигация</Label>
           {navigations.map(nav => (
             <li key={nav}>
-              <Link
-                href='#'
-                className='widgets__text'
-              >
-                {nav}
-              </Link>
+              <p className='widgets__text'>{nav}</p>
             </li>
           ))}
         </nav>
@@ -56,12 +51,7 @@ const FooterInfo = () => {
           <Label>о нас</Label>
           {abouts.map(about => (
             <li key={about}>
-              <Link
-                href='#'
-                className='widgets__text'
-              >
-                {about}
-              </Link>
+              <p className='widgets__text'>{about}</p>
             </li>
           ))}
         </ul>
@@ -69,12 +59,7 @@ const FooterInfo = () => {
           <Label>служба поддержки</Label>
           {supports.map(support => (
             <li key={support}>
-              <Link
-                href='#'
-                className='widgets__text'
-              >
-                {support}
-              </Link>
+              <p className='widgets__text'>{support}</p>
             </li>
           ))}
         </ul>
@@ -82,12 +67,7 @@ const FooterInfo = () => {
           <Label>подписка</Label>
           {subscribes.map(sub => (
             <li key={sub}>
-              <Link
-                href='#'
-                className='widgets__text'
-              >
-                {sub}
-              </Link>
+              <p className='widgets__text'>{sub}</p>
             </li>
           ))}
         </ul>
