@@ -3,18 +3,16 @@ import Image from 'next/image';
 import { ELEMENT_PER_SLIDE, ROOMS, TOTAL_PAGE } from '../constants';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useSearchParams } from 'next/navigation';
 import { RoomCard } from '@/entities/room';
 import arrow from '@/public/arrow.svg';
 import './style.scss';
+import { paths } from '@/shared/routing';
 
 const Rooms = () => {
   const router = useRouter();
-  const pathname = router.pathname;
-  const params = useSearchParams();
-  const [currentPage, setCurrentPage] = useState<number>(
-    Number(params!.get('page')) || 1
-  );
+  const query = router.query;
+  const queryPage = Number(query['page']) || 1;
+  const [currentPage, setCurrentPage] = useState<number>(queryPage);
 
   const [rooms, setRooms] = useState(ROOMS);
 
@@ -24,8 +22,13 @@ const Rooms = () => {
     setRooms(ROOMS.slice(startIndex, endIndex));
   }, [currentPage]);
 
+  useEffect(() => {
+    const queryCurrentPage = Number(query['page']) || 1;
+    setCurrentPage(queryCurrentPage);
+  }, [query]);
+
   const handleCurrentPageChange = (page: number) => {
-    router.replace(`${pathname}?page=${page}`);
+    router.push(paths.rooms({ page: page.toString() }));
     setCurrentPage(page);
   };
   return (
@@ -45,7 +48,7 @@ const Rooms = () => {
       </div>
       <Pagination
         currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
+        setCurrentPage={handleCurrentPageChange}
         elementPerPage={ELEMENT_PER_SLIDE}
         totalPage={TOTAL_PAGE}
         buttonClass='pagination__button'
