@@ -35,7 +35,13 @@ const AuthForm = memo(() => {
     if (response?.error) {
       setError(response.error);
     } else {
-      router.push(paths.home);
+      const query = router.query;
+      const callbackUrl = query['callbackUrl'];
+
+      if (!callbackUrl) router.push(paths.home);
+      else {
+        router.push(callbackUrl as string);
+      }
     }
 
     setEmail('');

@@ -1,12 +1,19 @@
-import type { AuthOptions, Awaitable, User as NextUser } from "next-auth";
-import Credentials from "next-auth/providers/credentials";
+import { paths } from "@/shared/routing";
+import type { NextAuthOptions, User } from "next-auth";
+import CredentialsProvider from 'next-auth/providers/credentials'
 
-export const authConfig: AuthOptions = {
-    session: {
-        strategy: "jwt"
-    },
+interface IUser extends User {
+    id: string;
+    name: string;
+    email: string;
+    lastname: string;
+    birstday: string;
+    password?: string;
+}
+
+const authConfig: NextAuthOptions = {
     providers: [
-        Credentials({
+        CredentialsProvider({
             id: "credentials",
             name: "Credentials",
             credentials: {
@@ -37,55 +44,36 @@ export const authConfig: AuthOptions = {
                 },
             },
             async authorize(credentials) {
-                // if (!credentials?.email || !credentials.password) return null;
 
-                // const user = await prisma.user.findFirst({
-                //     where: {
-                //         email: credentials.email
-                //     }
-                // })
+                if (!credentials?.email || !credentials.password) return null;
 
-                // if (!user) {
-                //     throw new Error("User not found");
-                // }
+                if (credentials?.email === "test@test.ru" && credentials.password === "pass123") {
+                    const { password, ...credentialsWithOutPassword } = credentials;
+                    return credentialsWithOutPassword as IUser;
+                }
 
-                // const isPasswordCorrect = user?.password === credentials.password
-
-                // if (!isPasswordCorrect) {
-                //     throw new Error("Invalid credentials")
-                // }
-
-                // const { password, ...userWithOutPassword } = user;
-                // return userWithOutPassword;
                 return null;
-
-            },
-        }),
+            }
+        })
     ],
-    callbacks: {
-        async session({ session, token }) {
-            // const userInfo = await prisma.user.findFirst({
-            //     where: {
-            //         email: session.user.email
-            //     }
-            // })
-
-            // if (session?.user && userInfo) {
-            //     session.user.id = userInfo.id;
-            //     session.user.createdAt = userInfo.createdAt;
-            //     session.user.date_birthday = userInfo.date_birthday;
-            //     session.user.email = userInfo.email;
-            //     session.user.is_accept_special_demand = userInfo.is_accept_special_demand;
-            //     session.user.lastname = userInfo.lastname;
-            //     session.user.name = userInfo.name;
-            //     session.user.sex = userInfo.sex;
-            //     session.user.updatedAt = userInfo.updatedAt;
-            // }
-            // return session
-            return session;
-        }
-    },
     pages: {
-        signIn: "/login",
+        signIn: paths.login
+    },
+    session: {
+        strategy: "jwt"
+    },
+    callbacks: {
+        // jwt: async ({ token, user }) => {
+        //     user && (token.user = user)
+        //     return token
+        // },
+        // session: async ({ session, token }) => {
+        //     const user = token.user as IUser
+        //     session.user = user
+
+        //     return session
+        // }
     }
-};
+}
+
+export default authConfig;
