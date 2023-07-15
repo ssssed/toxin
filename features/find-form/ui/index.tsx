@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import React, { useMemo, useState } from 'react';
-import type { Guest } from './types';
+import type { Guest } from '../types';
 import {
   Label,
   Option,

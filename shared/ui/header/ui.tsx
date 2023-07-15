@@ -2,12 +2,13 @@ import Image from 'next/image';
 import './style.scss';
 import Link from 'next/link';
 import { HeaderNav, HeaderButtons } from './ui/';
+import { paths } from '@/shared/routing';
 
 const Header = () => {
   return (
     <header className='header'>
       <div className='header__content'>
-        <Link href='/'>
+        <Link href={paths.home}>
           <Image
             src='/header-logo.svg'
             alt='logo'

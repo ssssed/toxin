@@ -1,11 +1,17 @@
 import '@/app/styles/index.scss';
 import type { AppProps } from 'next/app';
-import { Layout } from '@/widgets';
+import { Providers } from '@/app/providers';
+import { Layout } from '@/widgets/layouts/base';
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Providers session={session}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </Providers>
   );
 }

@@ -4,7 +4,7 @@ import landing_3 from '@/public/landing-3.png';
 import landing_7 from '@/public/landing-7.png';
 import { Img, Slider } from '@/shared/ui';
 import './style.scss';
-import { FindForm } from '@/widgets';
+import { FindForm } from '@/features/find-form';
 
 const SLIDER_IMAGES: Img[] = [
   { image: landing_1, alt: 'landing-1' },
