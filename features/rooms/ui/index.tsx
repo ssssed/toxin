@@ -1,11 +1,11 @@
 import { Container, Pagination, Title } from '@/shared/ui';
 import Image from 'next/image';
-import accordion from '@/public/accordion.svg';
 import { ELEMENT_PER_SLIDE, ROOMS, TOTAL_PAGE } from '../constants';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useSearchParams } from 'next/navigation';
 import { RoomCard } from '@/entities/room';
+import arrow from '@/public/arrow.svg';
 import './style.scss';
 
 const Rooms = () => {
@@ -53,7 +53,7 @@ const Rooms = () => {
         navigationButtonClass='pagination__navigation'
         navigationNextContent={
           <Image
-            src={accordion}
+            src={arrow}
             alt='arrow'
             width={24}
             height={24}
@@ -61,7 +61,7 @@ const Rooms = () => {
         }
         navigationPrevContent={
           <Image
-            src={accordion}
+            src={arrow}
             style={{ rotate: '180deg' }}
             alt='arrow'
             width={24}
