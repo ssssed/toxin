@@ -1,3 +1,4 @@
+import { RegisterData, api } from '@/shared/api/common';
 import { paths } from '@/shared/routing';
 import { Button } from '@/shared/ui/button';
 import { Container } from '@/shared/ui/container';
@@ -49,22 +50,28 @@ const RegisterForm = () => {
 
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+    let correctDate: Date | null | string = date;
+    if (!correctDate) correctDate = null;
+    else {
+      correctDate = new Date(date);
+    }
+    const data: RegisterData = {
+      email,
+      name,
+      lastname: lastName,
+      password,
+      sex,
+      date_birthday: correctDate,
+      is_accept_special_demand: isOn,
+    };
     try {
-      console.log(sex);
-
-      const data = {
-        email,
-        name,
-        lastname: lastName,
-        password,
-        sex,
-        date_birthday: date,
-        is_accept_special_demand: isOn,
-      };
-
-      // handleNavigateToLoginPage();
-    } catch (error) {}
+      api.register(data, user => {
+        console.log(user);
+        handleNavigateToLoginPage();
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
