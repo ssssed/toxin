@@ -9,3 +9,7 @@ export interface RegisterData {
     date_birthday: Date | null;
     is_accept_special_demand: boolean;
 }
+
+export type ErrorType = {
+    message: string;
+}

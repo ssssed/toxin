@@ -7,5 +7,6 @@ export const http = axios.create({
 });
 
 export const ROUTES = {
-    register: "/api/user"
+    register: "/api/user",
+    auth: 'credentials'
 }
