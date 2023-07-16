@@ -1,11 +1,12 @@
+import { api } from '@/shared/api/common';
 import { paths } from '@/shared/routing';
 import { Button } from '@/shared/ui/button';
+import { Error } from '@/shared/ui/error';
 import { Form, FormInfoBar } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { InputGroup } from '@/shared/ui/input-group';
 import { SubmitButton } from '@/shared/ui/submit-button';
 import { Title } from '@/shared/ui/title';
-import { signIn } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { memo, useState } from 'react';
 
@@ -23,26 +24,29 @@ const AuthForm = memo(() => {
 
   const handleSubmitForm = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await signIn('credentials', {
-      email,
-      password,
-      redirect: false,
-    });
+    try {
+      const data = {
+        email,
+        password,
+        redirect: false,
+      };
+      await api.auth(
+        data,
+        () => {
+          const query = router.query;
+          const callbackUrl = query['callbackUrl'];
 
-    if (response?.error) {
-      setError(response.error);
-    } else {
-      const query = router.query;
-      const callbackUrl = query['callbackUrl'];
-
-      if (!callbackUrl) router.push(paths.home);
-      else {
-        router.push(callbackUrl as string);
-      }
+          if (!callbackUrl) router.push(paths.home);
+          else {
+            router.push(callbackUrl as string);
+          }
+        },
+        setError
+      );
+    } finally {
+      setEmail('');
+      setPassword('');
     }
-
-    setEmail('');
-    setPassword('');
   };
 
   const handleNavigateToRegisterPage = () => router.push(paths.register);
@@ -70,7 +74,7 @@ const AuthForm = memo(() => {
         />
       </InputGroup>
       <SubmitButton>войти</SubmitButton>
-      <span style={{ color: 'red' }}>{error}</span>
+      {error && <Error>{error}</Error>}
       <FormInfoBar>
         <span>Нет аккаунта на Toxin?</span>
         <Button

@@ -3,6 +3,7 @@ import { paths } from '@/shared/routing';
 import { Button } from '@/shared/ui/button';
 import { Container } from '@/shared/ui/container';
 import DatePicker from '@/shared/ui/datepicker';
+import { Error } from '@/shared/ui/error';
 import { Form, FormInfoBar } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
 import { InputGroup } from '@/shared/ui/input-group';
@@ -26,6 +27,7 @@ const RegisterForm = () => {
   const [password, setPassword] = useState<string>('');
   const [date, setDate] = useState<string>('');
   const [sex, setSex] = useState<Gender>('NONE');
+  const [error, setError] = useState<string>('');
 
   const [isOn, setIsOn] = useState(false);
 
@@ -65,10 +67,14 @@ const RegisterForm = () => {
       is_accept_special_demand: isOn,
     };
     try {
-      api.register(data, user => {
-        console.log(user);
-        handleNavigateToLoginPage();
-      });
+      await api.register(
+        data,
+        user => {
+          console.log(user);
+          handleNavigateToLoginPage();
+        },
+        setError
+      );
     } catch (error) {
       console.error(error);
     }
@@ -154,6 +160,7 @@ const RegisterForm = () => {
           <Text type='default'>Получать спецпредложения</Text>
         </Container>
       </Container>
+      {error && <Error align='center'>{error}</Error>}
       <SubmitButton>зарегистрироваться</SubmitButton>
       <FormInfoBar>
         <span>Уже есть аккаунт на Toxin</span>
