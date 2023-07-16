@@ -1,6 +1,6 @@
 import { FC, useState } from 'react';
 import './style.scss';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperType, { Pagination, Navigation, EffectFade } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -10,15 +10,8 @@ import { Room } from '../types';
 import Image from 'next/image';
 import { Star } from '@/shared/ui/star';
 
-import { IMAGES } from '../constants';
+import { IMAGES, RoomType } from '../constants';
 import { Subtitle } from '@/shared/ui/subtitle';
-
-enum RoomType {
-  LUXE = 'Люкс',
-  DEFAULT = '',
-  PREMIUM = 'Премиум',
-  PRESIDENT = 'Президентский',
-}
 
 const RoomCard: FC<Room> = room => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -28,7 +21,10 @@ const RoomCard: FC<Room> = room => {
 
   const rating = Math.floor(Math.random() * 5);
   return (
-    <div className='room'>
+    <div
+      data-wow-delay={room['data-wow-delay']}
+      className='room wow animate__animated animate__bounceIn'
+    >
       <Swiper
         className='room-slider'
         modules={[Pagination, Navigation, EffectFade]}
