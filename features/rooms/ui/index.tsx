@@ -41,10 +41,11 @@ const Rooms = () => {
     >
       <Title>Номера, которые мы для вас подобрали</Title>
       <div className='rooms'>
-        {rooms.map(room => (
+        {rooms.map((room, index) => (
           <RoomCard
             key={room.id}
             {...room}
+            data-wow-delay={`${(index * 4) / 100}s`}
           />
         ))}
       </div>
