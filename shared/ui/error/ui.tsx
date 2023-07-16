@@ -5,7 +5,7 @@ import { ErrorType } from './types';
 const Error: FC<ErrorType> = ({ children, align = 'start' }) => {
   return (
     <span
-      className='error'
+      className='error wow animate__animated animate__headShake'
       style={{ textAlign: align }}
     >
       {children}
