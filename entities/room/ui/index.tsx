@@ -12,6 +12,7 @@ import { Star } from '@/shared/ui/star';
 
 import { IMAGES, RoomType } from '../constants';
 import { Subtitle } from '@/shared/ui/subtitle';
+import Link from 'next/link';
 
 const RoomCard: FC<Room> = room => {
   const [swiper, setSwiper] = useState<SwiperType | null>(null);
@@ -69,17 +70,26 @@ const RoomCard: FC<Room> = room => {
       </Swiper>
       <div className='room__content'>
         <div className='room__info-bar'>
-          <Subtitle>№ {room.number}</Subtitle>
-          <span className='room__type'>{RoomType[room.type]}</span>
+          <Subtitle>
+            <Link href={`/room/${room.id}`}>№ {room.number}</Link>
+          </Subtitle>
+          <span className='room__type'>
+            <Link href={`/room/${room.id}`}>{RoomType[room.type]}</Link>
+          </span>
           <p className='room__price'>
-            <span className='room__important-text'>{room.day_price}₽</span> в
-            сутки
+            <span className='room__important-text'>
+              <Link href={`/room/${room.id}`}>{room.day_price}₽ </Link>
+            </span>
+            в сутки
           </p>
         </div>
         <div className='room__review'>
           <Star rating={rating} />
           <p className='room__count-review'>
-            <span className='room__important-text'>145</span> Отзывов
+            <span className='room__important-text'>
+              <Link href={`/room/${room.id}`}>145 </Link>
+            </span>
+            Отзывов
           </p>
         </div>
       </div>
