@@ -15,6 +15,11 @@ body,
   font-style: normal;
   font-weight: 400;
   font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
 }
 
 a {
