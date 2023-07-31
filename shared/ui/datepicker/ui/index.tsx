@@ -1,8 +1,12 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import './style.scss';
 import Image from 'next/image';
+import type { DatePickerType } from '../types';
+import { Calendar } from './calendar';
+import { CSSTransition } from 'react-transition-group';
 
-const DatePicker: FC<DatePicker> = ({ className }) => {
+export const DatePicker: FC<DatePickerType> = ({ className }) => {
+  const [selectedDate, setSelectedDay] = useState(new Date());
   const today = new Date();
 
   const [day, setDay] = useState<string>('');
@@ -23,6 +27,22 @@ const DatePicker: FC<DatePicker> = ({ className }) => {
   const handleYearChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setYear(e.target.value);
 
+  const handleApplyChange = (date: Date) => {
+    setSelectedDay(date);
+    setDay(date.getDate().toString().padStart(2, '0'));
+    setMonth((+date.getMonth() + 1).toString().padStart(2, '0'));
+    setYear(date.getFullYear().toString());
+  };
+
+  useEffect(() => {
+    const date = new Date();
+    date.setDate(+day);
+    date.setMonth(+month - 1);
+    date.setFullYear(+year);
+
+    setSelectedDay(date);
+  }, [day, month, year]);
+
   return (
     <div className={`date-picker ${className}`}>
       <input
@@ -42,7 +62,9 @@ const DatePicker: FC<DatePicker> = ({ className }) => {
         />
         <span className='date-picker__dot'>.</span>
         <input
-          className='date-picker__input-date date-picker__input-date_month'
+          className={`date-picker__input-date date-picker__input-date_month ${
+            month && 'date-picker__input-date_item-default'
+          }`}
           value={month}
           type='number'
           maxLength={2}
@@ -64,17 +86,25 @@ const DatePicker: FC<DatePicker> = ({ className }) => {
         src='/accordion.svg'
         alt='accordion'
         width={12}
-        className='date-picker__image'
+        className={`date-picker__image ${
+          showCalendar && 'date-picker__image_rotate'
+        }`}
         onClick={toggleCalendar}
         height={12}
       />
-      {showCalendar && (
-        <ul>
-          <li>пвавп</li>
-        </ul>
-      )}
+      <CSSTransition
+        in={showCalendar}
+        classNames='date-picker__animate'
+        timeout={200}
+        unmountOnExit
+      >
+        <Calendar
+          selectedDate={selectedDate}
+          selectDate={date => setSelectedDay(date)}
+          onApply={handleApplyChange}
+          onClear={toggleCalendar}
+        />
+      </CSSTransition>
     </div>
   );
 };
-
-export default DatePicker;

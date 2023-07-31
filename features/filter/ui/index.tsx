@@ -5,6 +5,7 @@ import { HomeRule } from './home-rule';
 import { Accessibility } from './accessibility';
 import { ComfortsRooms } from './comforts-rooms';
 import { AdditionalComfort } from './additional-comfort';
+import { DateOfArrival } from './date-of-arrival';
 
 const Filter = () => {
   return (
@@ -14,7 +15,13 @@ const Filter = () => {
       items='flex-start'
       gap={30}
     >
-      <GuestSelect />
+      <Container
+        direction='column'
+        gap={20}
+      >
+        <DateOfArrival />
+        <GuestSelect />
+      </Container>
       <PriceRange />
       <HomeRule />
       <Accessibility />

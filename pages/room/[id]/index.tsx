@@ -1,7 +1,10 @@
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
 
 const RoomDetailPage: NextPage = () => {
-  return <main className='page room-detail'>RoomDetail</main>;
+  const router = useRouter();
+  const { id } = router.query;
+  return <main className='page room-detail'>RoomDetail {id}</main>;
 };
 
 export default RoomDetailPage;

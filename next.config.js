@@ -4,6 +4,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
   reactStrictMode: true,
+  optimizeFonts: true,
 };
 
 module.exports = nextConfig;
