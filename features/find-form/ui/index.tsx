@@ -1,7 +1,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useMemo, useState } from 'react';
 import type { Guest } from '../types';
-import DatePicker from '@/shared/ui/datepicker';
+import { DatePicker } from '@/shared/ui/datepicker';
 import { useNumeralForm } from '@/shared/helpers';
 import { paths } from '@/shared/routing';
 import './style.scss';

@@ -1,3 +1,3 @@
 export interface DatePickerType {
-    className: string;
+    className?: string;
 }
