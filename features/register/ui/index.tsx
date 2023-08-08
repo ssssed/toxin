@@ -2,7 +2,7 @@ import { RegisterData, api } from '@/shared/api/common';
 import { paths } from '@/shared/routing';
 import { Button } from '@/shared/ui/button';
 import { Container } from '@/shared/ui/container';
-import DatePicker from '@/shared/ui/datepicker';
+import { DatePicker } from '@/shared/ui/datepicker';
 import { Error } from '@/shared/ui/error';
 import { Form, FormInfoBar } from '@/shared/ui/form';
 import { Input } from '@/shared/ui/input';
