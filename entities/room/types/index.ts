@@ -8,5 +8,5 @@ export type Room = {
     services_price: number,
     additional_services_price: number,
     updated: Date,
-    "data-wow-delay": string | number;
+    "data-wow-delay"?: string | number;
 }
