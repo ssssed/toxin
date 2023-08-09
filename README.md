@@ -1,7 +1,7 @@
 # Toxin
 
 ### Stack
-**Nextjs**, **Effector**, **Prisma**, Next Auth, **Typescript**, axios
+**Nextjs**, **Effector**, **Prisma**, Next Auth, **Typescript**
 
 ### Architecture
 FSD - [Feature-Sliced Design](https://feature-sliced.design "Лучшая архитектура для фронтенд приложения") 
