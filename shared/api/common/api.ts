@@ -1,24 +1,24 @@
+import { request } from './request';
 import { User } from "@prisma/client";
-import { ROUTES, http } from "./config";
-import { ErrorType, RegisterData } from "./types";
+import { ROUTES } from "./config";
+import { RegisterData } from "./types";
 import { signIn } from "next-auth/react";
-import { AxiosError } from "axios";
 
-const callbackError = (error: string) => { }
+const callbackError = (error: string) => { console.error(error) }
 
 class Api {
 
     async register(data: RegisterData, cb: (user: User) => void, cbError = callbackError) {
         try {
-            const response = await http.post(ROUTES.register, data)
-
+            const response = await request.post<RegisterData, User>(ROUTES.register, {
+                body: data,
+            })
+            console.log(response);
             if (response.status === 200) {
-                cb(response.data);
+                cb(response.data)
             }
         } catch (error) {
-            const err = error as AxiosError;
-            const errorResponse = err.response?.data as ErrorType;
-            cbError(errorResponse.message);
+            cbError(JSON.stringify(error));
         }
     }
 
