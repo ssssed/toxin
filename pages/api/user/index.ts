@@ -4,7 +4,9 @@ import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     if (req.method === 'POST') {
-        const body: User = req.body;
+        const body: User = JSON.parse(req.body);
+
+        console.log("[ BODY ]", body, body.email);
 
         const candidate = await prisma.user.findFirst({
             where: {
