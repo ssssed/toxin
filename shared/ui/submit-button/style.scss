@@ -10,6 +10,10 @@
   border-radius: 22px;
   cursor: pointer;
 
+  &_disable {
+    opacity: 0.5;
+  }
+
   & span {
     width: 100%;
     text-align: center;
