@@ -28,7 +28,7 @@ const Select: FC<SelectType> = ({ isShow, setShow, children, title }) => {
         <CSSTransition
           in={isShow}
           classNames='select__animate'
-          timeout={200}
+          timeout={300}
           unmountOnExit
         >
           <div className='select__list'>
