@@ -9,6 +9,12 @@
   border: 1px solid $dark-shade-25;
   border-radius: 4px;
 
+  &:hover,
+  &:focus {
+    border: 1px solid $dark-shade-50;
+    color: $dark-shade-75;
+  }
+
   &:focus {
     outline: none;
   }
