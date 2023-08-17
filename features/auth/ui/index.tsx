@@ -16,6 +16,7 @@ const AuthForm = memo(() => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
+  const [isPending, setPending] = useState<boolean>(false);
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) =>
     setEmail(e.target.value);
@@ -30,6 +31,7 @@ const AuthForm = memo(() => {
         password,
         redirect: false,
       };
+      setPending(true);
       await api.auth(
         data,
         () => {
@@ -46,6 +48,7 @@ const AuthForm = memo(() => {
     } finally {
       setEmail('');
       setPassword('');
+      setPending(false);
     }
   };
 
@@ -73,7 +76,7 @@ const AuthForm = memo(() => {
           required
         />
       </InputGroup>
-      <SubmitButton>войти</SubmitButton>
+      <SubmitButton isPending={isPending}>войти</SubmitButton>
       {error && <Error>{error}</Error>}
       <FormInfoBar>
         <span>Нет аккаунта на Toxin?</span>
