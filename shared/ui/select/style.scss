@@ -1,18 +1,27 @@
 @import '/app/styles/index.scss';
 
 .select {
-  display: flex;
   position: relative;
-  align-items: center;
-  max-width: 320px;
-  width: 100%;
-  padding: 12px 15px;
-  border: 1px solid $dark-shade-25;
-  border-radius: 4px;
-  box-sizing: border-box;
+  z-index: 2;
+  // border-radius: 4px;
+  // border: 1px solid $dark-shade-25;
+  clip-path: inset(0 0 -500px 0);
+  background-color: #fff;
 
-  &_open {
-    border-radius: 4px 4px 0 0;
+  &__container {
+    display: flex;
+    align-items: center;
+    max-width: 320px;
+    border: 1px solid $dark-shade-25;
+    border-radius: 4px;
+    width: 100%;
+    background-color: #fff;
+    padding: 12px 15px;
+    box-sizing: border-box;
+
+    &_open {
+      border-radius: 4px 4px 0 0;
+    }
   }
 
   &__img {
@@ -39,21 +48,25 @@
   }
 
   &__content {
+    position: relative;
     padding: 11px 15px;
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 7px;
+    border: 1px solid $dark-shade-25;
+    border-top: 0;
+    border-radius: 0 0 4px 4px;
   }
 
   &__list {
-    border: 1px solid $dark-shade-25;
-    border-radius: 0 0 4px 4px;
+    border: 1px solid transparent;
+    border-top: 0;
     position: absolute;
-    z-index: 2;
+    z-index: -100;
     left: -1px;
     top: 100%;
-    background-color: #ffffff;
+    background-color: #fff;
     width: calc(100% + 2px);
   }
 
@@ -74,29 +87,60 @@
     cursor: pointer;
   }
 
+  // &__animate {
+  //   // CSSTransition start
+  //   &-enter {
+  //     will-change: overflow max-height;
+  //     overflow: hidden;
+  //     max-height: 0;
+  //   }
+
+  //   // CSSTransition active animate
+  //   &-enter-active {
+  //     will-change: overflow max-height;
+  //     max-height: 1000px;
+  //     transition: max-height 0.6s ease-in-out;
+  //   }
+
+  //   // CSSTransition start to exit animate
+  //   &-exit {
+  //     will-change: max-height;
+  //     max-height: 1000px;
+  //   }
+
+  //   // CSSTransition exit animate
+  //   &-exit-active {
+  //     will-change: overflow max-height;
+  //     overflow: hidden;
+  //     max-height: 0;
+  //     transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+  //   }
+  // }
+
   &__animate {
     // CSSTransition start
     &-enter {
-      overflow: hidden;
-      max-height: 0;
+      will-change: transform;
+      transform: translateY(-100%);
     }
 
     // CSSTransition active animate
     &-enter-active {
-      max-height: 1000px;
-      transition: max-height 0.6s ease-in-out;
+      will-change: transform;
+      transform: translateY(0);
+      transition: all 0.4s ease-out;
     }
 
-    // CSSTransition start to exit animate
     &-exit {
-      max-height: 1000px;
+      will-change: transform;
+      transform: translateY(0);
     }
 
     // CSSTransition exit animate
     &-exit-active {
-      overflow: hidden;
-      max-height: 0;
-      transition: max-height 0.4s cubic-bezier(0, 1, 0, 1);
+      will-change: transform;
+      transform: translateY(-100%); // Change this to 0 if needed
+      transition: transform 0.4s cubic-bezier(0, 1, 0, 1);
     }
   }
 }
