@@ -1,17 +1,15 @@
-@import '/app/styles/index.scss';
-
 .rooms {
-  max-width: 834px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
+	max-width: 834px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 12px;
 
-  &__text {
-    color: $dark-shade-75;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 24px;
-    word-wrap: break-word;
-    text-align: center;
-  }
+	&__text {
+		color: var(--dark-shade-75);
+		font-size: 14px;
+		font-weight: 400;
+		line-height: 24px;
+		word-wrap: break-word;
+		text-align: center;
+	}
 }
