@@ -1,5 +1,6 @@
-import { createEvent, createStore } from "effector";
-import { DEFAULT_RANGE_DATA } from "../constants";
+import { createEvent, createStore } from 'effector';
+
+import { DEFAULT_RANGE_DATA } from '../constants';
 
 // Rooms counter
 export const $bedrooms = createStore<number>(1);

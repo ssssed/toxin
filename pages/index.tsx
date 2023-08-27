@@ -1,19 +1,19 @@
-import landing_1 from '@/public/landing-1.jpg'
-import landing_3 from '@/public/landing-3.png'
-import landing_6 from '@/public/landing-6.png'
-import landing_7 from '@/public/landing-7.png'
+import landing_1 from '@/public/landing-1.jpg';
+import landing_3 from '@/public/landing-3.png';
+import landing_6 from '@/public/landing-6.png';
+import landing_7 from '@/public/landing-7.png';
 
-import { FindForm } from '@/features/find-form'
+import { FindForm } from '@/widgets/find-form';
 
-import { Img, Slider } from '@/shared/ui/slider'
-import './style.scss'
+import { Img, Slider } from '@/shared/ui/slider';
+import './style.scss';
 
 const SLIDER_IMAGES: Img[] = [
 	{ image: landing_1, alt: 'landing-1' },
 	{ image: landing_6, alt: 'landing-6' },
 	{ image: landing_3, alt: 'landing-3' },
-	{ image: landing_7, alt: 'landing-7' },
-]
+	{ image: landing_7, alt: 'landing-7' }
+];
 
 export default function Home() {
 	return (
@@ -26,5 +26,5 @@ export default function Home() {
 				</p>
 			</section>
 		</main>
-	)
+	);
 }

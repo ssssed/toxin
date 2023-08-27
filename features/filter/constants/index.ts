@@ -1,1 +1,0 @@
-export const DEFAULT_RANGE_DATA = [5000, 10000];
