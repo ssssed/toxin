@@ -1,16 +1,17 @@
+import axios from 'axios';
 import type { NextAuthOptions } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 
 // eslint-disable-next-line no-restricted-imports
-import { prisma } from '@/app/configs/prisma';
+import { IUser } from '@/app/configs/next-auth/types';
 
+import { ROUTES } from '@/shared/api/common';
 import { paths } from '@/shared/routing';
-
-import { IUser } from './types';
 
 const authConfig: NextAuthOptions = {
 	providers: [
 		CredentialsProvider({
+			type: 'credentials',
 			id: 'credentials',
 			name: 'Credentials',
 			credentials: {
@@ -43,24 +44,16 @@ const authConfig: NextAuthOptions = {
 			async authorize(credentials) {
 				if (!credentials?.email || !credentials.password) return null;
 
-				const user = await prisma.user.findFirst({
-					where: {
-						email: credentials.email
-					}
+				const { email, password } = credentials;
+
+				const response = await axios.post(ROUTES.user.auth, {
+					email,
+					password
 				});
 
-				if (!user) {
-					throw new Error('Пользователь не найден');
-				}
+				if (response.status !== 200) throw new Error('Пользователь не найден');
 
-				const isPasswordCorrect = user?.password === credentials.password;
-
-				if (!isPasswordCorrect) {
-					throw new Error('Неправильный логин или пароль');
-				}
-
-				const { password, ...credentialsWithOutPassword } = user;
-				return credentialsWithOutPassword as IUser;
+				return response.data as IUser;
 			}
 		})
 	],
@@ -71,15 +64,15 @@ const authConfig: NextAuthOptions = {
 		strategy: 'jwt'
 	},
 	callbacks: {
-		// jwt: async ({ token, user }) => {
-		//     user && (token.user = user)
-		//     return token
-		// },
-		// session: async ({ session, token }) => {
-		//     const user = token.user as IUser
-		//     session.user = user
-		//     return session
-		// }
+		jwt: async ({ token, user }) => {
+			user && (token.user = user);
+			return token;
+		},
+		session: async ({ session, token }) => {
+			const user = token.user as IUser;
+			session.user = user;
+			return session;
+		}
 	}
 };
 

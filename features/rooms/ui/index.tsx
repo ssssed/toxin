@@ -1,21 +1,19 @@
 import Image from 'next/image';
-
-// eslint-disable-next-line import/order
-import { ELEMENT_PER_SLIDE, ROOMS, TOTAL_PAGE } from '../constants';
-
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import './style.scss';
 
 import arrow from '@/public/arrow.svg';
 
-import { RoomCard } from '@/entities/room';
+import { handleGetRooms, IMeta, RoomCard } from '@/entities/room';
 
 import { Condition } from '@/shared/helpers';
 import { paths } from '@/shared/routing';
 import { Container } from '@/shared/ui/container';
 import { Pagination } from '@/shared/ui/pagination';
 import { Title } from '@/shared/ui/title';
+
+import { ROOMS } from '../constants';
 
 const Rooms = () => {
 	const router = useRouter();
@@ -24,11 +22,15 @@ const Rooms = () => {
 	const [currentPage, setCurrentPage] = useState<number>(queryPage);
 
 	const [rooms, setRooms] = useState(ROOMS);
+	const [meta, setMeta] = useState<IMeta | null>(null);
+	const handleRenderRooms = async () => {
+		const { data, meta } = await handleGetRooms(currentPage);
+		setMeta(meta);
+		setRooms(data);
+	};
 
 	useEffect(() => {
-		const startIndex = (currentPage - 1) * ELEMENT_PER_SLIDE;
-		const endIndex = startIndex + ELEMENT_PER_SLIDE;
-		setRooms(ROOMS.slice(startIndex, endIndex));
+		handleRenderRooms();
 	}, [currentPage]);
 
 	useEffect(() => {
@@ -57,14 +59,14 @@ const Rooms = () => {
 				))}
 			</div>
 			<Condition
-				if={TOTAL_PAGE > 0 && rooms.length > 0}
+				if={meta?.totalPage! > 0 && rooms.length > 0}
 				then={
 					<>
 						<Pagination
 							currentPage={currentPage}
 							setCurrentPage={handleCurrentPageChange}
-							elementPerPage={ELEMENT_PER_SLIDE}
-							totalPage={TOTAL_PAGE}
+							elementPerPage={meta?.elementPerPage!}
+							totalPage={meta?.totalPage!}
 							buttonClass='pagination__button'
 							buttonActiveClass='pagination__button_active'
 							navigationButtonClass='pagination__navigation'

@@ -1,27 +1,10 @@
-import { request } from '@/shared/api/common';
+import axios from 'axios';
 
-import { IRoomsResponse } from '../types';
+import { IRoomsResponse } from '@/entities/room';
 
-const handleGetRooms = async (page: number) => request.get<IRoomsResponse>(`/api/rooms?page=${page}`);
+import { ROUTES } from '@/shared/api/common';
 
-// const handleCreateRoom = async (room: Room) =>
-// 	await prisma.room.create({
-// 		data: room
-// 	});
-
-// const handleGetRoomById = async (id: number) =>
-// 	await prisma.room.findFirst({
-// 		where: {
-// 			id
-// 		}
-// 	});
-
-// const handleUpdateRoom = async (room: Room) =>
-// 	await prisma.room.update({
-// 		data: room,
-// 		where: {
-// 			id: room.id
-// 		}
-// 	});
-
-export { handleGetRooms as getAll };
+export const handleGetRooms = async (page: number) => {
+	const { data } = await axios.get<IRoomsResponse>(`${ROUTES.room.all}?page=${page}`);
+	return data;
+};
