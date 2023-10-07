@@ -103,13 +103,15 @@ const RoomCard: FC<Room> = room => {
 					</p>
 				</div>
 				<div className='room__review'>
-					<Star rating={rating} />
-					<p className='room__count-review'>
-						<span className='room__important-text'>
-							<Link href={`/room/${room.id}`}>145 </Link>
-						</span>
-						Отзывов
-					</p>
+					<Star rating={room.rating} />
+					{room._count.comments ? (
+						<p className='room__count-review'>
+							<span className='room__important-text'>
+								<Link href={`/room/${room.id}`}>{room._count.comments} </Link>
+							</span>
+							Отзывов
+						</p>
+					) : null}
 				</div>
 			</div>
 		</div>

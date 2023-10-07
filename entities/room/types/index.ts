@@ -26,6 +26,10 @@ export type Room = {
 	created: string;
 	updated: string;
 	images: IRoomImage[];
+	rating: number;
+	_count: {
+		comments: number;
+	};
 };
 
 export interface IMeta {
@@ -42,4 +46,8 @@ export interface IMeta {
 export interface IRoomsResponse {
 	data: Room[];
 	meta: IMeta;
+}
+
+export interface IRoomDetailsResponse {
+	data: Room;
 }
