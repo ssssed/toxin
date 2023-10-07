@@ -1,44 +1,46 @@
+@import 'react-loading-skeleton/dist/skeleton.css';
+
 * {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
 }
 
 html,
 body,
 #__next {
-  max-width: 100vw;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  overflow-x: hidden;
-  font-style: normal;
-  font-weight: 400;
-  font-family: 'Montserrat', Arial, Helvetica, sans-serif;
-  animation-fill-mode: forwards;
-  -webkit-animation-fill-mode: forwards;
-  -moz-animation-fill-mode: forwards;
-  -o-animation-fill-mode: forwards;
-  -ms-animation-fill-mode: forwards;
+	max-width: 100vw;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	overflow-x: hidden;
+	font-style: normal;
+	font-weight: 400;
+	font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+	animation-fill-mode: forwards;
+	-webkit-animation-fill-mode: forwards;
+	-moz-animation-fill-mode: forwards;
+	-o-animation-fill-mode: forwards;
+	-ms-animation-fill-mode: forwards;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+	color: inherit;
+	text-decoration: none;
 }
 
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none; // Yeah, yeah everybody write about it
+	-webkit-appearance: none; // Yeah, yeah everybody write about it
 }
 
 input[type='number'],
 input[type='number']:hover,
 input[type='number']:focus {
-  appearance: none;
-  -moz-appearance: textfield;
+	appearance: none;
+	-moz-appearance: textfield;
 }
 
 .page {
-  flex: 1 0 auto;
+	flex: 1 0 auto;
 }

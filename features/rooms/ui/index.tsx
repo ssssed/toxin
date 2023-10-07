@@ -1,11 +1,15 @@
+import classNames from 'classnames';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+
 import './style.scss';
+
+import Skeleton from 'react-loading-skeleton';
 
 import arrow from '@/public/arrow.svg';
 
-import { handleGetRooms, IMeta, RoomCard } from '@/entities/room';
+import { handleGetRooms, IMeta, Room, RoomCard } from '@/entities/room';
 
 import { Condition } from '@/shared/helpers';
 import { paths } from '@/shared/routing';
@@ -13,18 +17,19 @@ import { Container } from '@/shared/ui/container';
 import { Pagination } from '@/shared/ui/pagination';
 import { Title } from '@/shared/ui/title';
 
-import { ROOMS } from '../constants';
-
 const Rooms = () => {
 	const router = useRouter();
 	const query = router.query;
 	const queryPage = Number(query['page']) || 1;
 	const [currentPage, setCurrentPage] = useState<number>(queryPage);
 
-	const [rooms, setRooms] = useState(ROOMS);
+	const [isLoading, setLoading] = useState<boolean>(true);
+
+	const [rooms, setRooms] = useState<Room[]>([]);
 	const [meta, setMeta] = useState<IMeta | null>(null);
 	const handleRenderRooms = async () => {
-		const { data, meta } = await handleGetRooms(currentPage);
+		setLoading(true);
+		const { data, meta } = await handleGetRooms(currentPage).finally(() => setLoading(false));
 		setMeta(meta);
 		setRooms(data);
 	};
@@ -49,14 +54,26 @@ const Rooms = () => {
 			gap={16}
 		>
 			<Title>Номера, которые мы для вас подобрали</Title>
+			{isLoading && (
+				<Skeleton
+					inline
+					containerClassName='rooms'
+					className={classNames('room', 'wow', 'animate__', 'animate__bounceIn', 'animated')}
+					count={12}
+					width={270}
+					height={263}
+					borderRadius={4}
+				/>
+			)}
 			<div className='rooms'>
-				{rooms.map((room, index) => (
-					<RoomCard
-						key={room.id}
-						{...room}
-						data-wow-delay={`${(index * 4) / 100}s`}
-					/>
-				))}
+				{!isLoading &&
+					rooms.map((room, index) => (
+						<RoomCard
+							key={room.id}
+							{...room}
+							data-wow-delay={`${(index * 4) / 100}s`}
+						/>
+					))}
 			</div>
 			<Condition
 				if={meta?.totalPage! > 0 && rooms.length > 0}
@@ -88,7 +105,9 @@ const Rooms = () => {
 								/>
 							}
 						/>
-						<p className='rooms__text'>1 – 12 из 100+ вариантов аренды</p>
+						<p className='rooms__text'>
+							1 – 12 из {meta && meta?.totalRooms >= 100 ? '100+' : meta?.totalRooms} вариантов аренды
+						</p>
 					</>
 				}
 				else={<div>Нет данных</div>}

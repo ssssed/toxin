@@ -36,6 +36,7 @@ export interface IMeta {
 	elementPerPage: number;
 	nextPageLink: string;
 	prevPageLink: string;
+	totalRooms: number;
 }
 
 export interface IRoomsResponse {
